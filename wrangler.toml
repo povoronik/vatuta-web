@@ -1,0 +1,7 @@
+name = "vatuta-web"
+compatibility_date = "2025-06-01"
+
+# Sirve los archivos estáticos del repo (index.html en la raíz).
+# No hay código de Worker: es un sitio estático servido por Workers Static Assets.
+[assets]
+directory = "./"
