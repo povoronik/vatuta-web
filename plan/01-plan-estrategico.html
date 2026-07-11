@@ -1,0 +1,714 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">
+<title>Vatuta · Plan de acción</title>
+<style>
+  :root{
+    --bg:#F1F0EC; --surface:#FBFAF7; --surface-2:#F6F4EF;
+    --ink:#1A1A16; --muted:#6B695F; --faint:#949186;
+    --line:#E2DFD6; --line-strong:#CFCBBF;
+    --accent:#A96E15; --accent-ink:#6E4708; --accent-soft:#F1E4C8;
+    --good:#2E7A52; --good-soft:#E1F0E6;
+    --warn:#A96E15; --warn-soft:#F5E9CC;
+    --crit:#A93B33; --crit-soft:#F6E1DE;
+    --shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);
+    --maxw:1080px; --read:70ch;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0F1116; --surface:#171A21; --surface-2:#1C2028;
+      --ink:#ECEAE1; --muted:#9C998E; --faint:#75726A;
+      --line:#262A33; --line-strong:#333844;
+      --accent:#E0A93C; --accent-ink:#F0CE86; --accent-soft:#241D0F;
+      --good:#5BC08A; --good-soft:#132419;
+      --warn:#E0A93C; --warn-soft:#241D0F;
+      --crit:#E58B82; --crit-soft:#2A1614;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#F1F0EC;--surface:#FBFAF7;--surface-2:#F6F4EF;--ink:#1A1A16;--muted:#6B695F;--faint:#949186;
+    --line:#E2DFD6;--line-strong:#CFCBBF;--accent:#A96E15;--accent-ink:#6E4708;--accent-soft:#F1E4C8;
+    --good:#2E7A52;--good-soft:#E1F0E6;--warn:#A96E15;--warn-soft:#F5E9CC;--crit:#A93B33;--crit-soft:#F6E1DE;
+    --shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);
+  }
+  :root[data-theme="dark"]{
+    --bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;
+    --line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;
+    --good:#5BC08A;--good-soft:#132419;--warn:#E0A93C;--warn-soft:#241D0F;--crit:#E58B82;--crit-soft:#2A1614;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+    font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.12;text-wrap:balance;margin:0;letter-spacing:-.01em;}
+  p{margin:0 0 1em;}
+  a{color:var(--accent-ink);text-underline-offset:3px;text-decoration-thickness:1px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .read{max-width:var(--read);}
+
+  /* ---- top bar ---- */
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
+    background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line);}
+  .bar .row{display:flex;align-items:center;gap:20px;height:60px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:18px;}
+  .mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(150deg,var(--accent),var(--accent-ink));
+    color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:18px;box-shadow:var(--shadow);}
+  .mark span{transform:translateY(-1px);}
+  nav.top{margin-left:auto;display:flex;gap:22px;}
+  nav.top a{font-size:13.5px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;}
+  nav.top a:hover{color:var(--ink);}
+  @media(max-width:820px){nav.top{display:none;}}
+
+  /* ---- hero ---- */
+  .hero{padding:76px 0 40px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(60% 60% at 88% 0%,color-mix(in srgb,var(--accent) 16%,transparent),transparent 60%);}
+  .hero .inner{position:relative;animation:rise .7s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  .hero h1{font-size:clamp(2.5rem,5.4vw,4.1rem);margin:.35em 0 .3em;max-width:16ch;}
+  .hero .lede{font-size:clamp(1.05rem,1.6vw,1.28rem);color:var(--muted);max-width:60ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;}
+  .chip{font-family:var(--mono);font-size:12px;letter-spacing:.02em;color:var(--ink);background:var(--surface);
+    border:1px solid var(--line);border-radius:30px;padding:6px 13px;box-shadow:var(--shadow);}
+  .chip b{color:var(--accent-ink);font-weight:600;}
+
+  /* ---- sections ---- */
+  section{padding:52px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px;}
+  .sec-head .no{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:600;padding-top:4px;}
+  h2{font-size:clamp(1.7rem,3vw,2.3rem);}
+  .sec-sub{color:var(--muted);max-width:var(--read);margin-top:10px;font-size:1.05rem;}
+
+  /* ---- cards / grids ---- */
+  .grid{display:grid;gap:16px;margin-top:28px;}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g4{grid-template-columns:repeat(4,1fr);}
+  @media(max-width:860px){.g3,.g4{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);}
+  .card h3{font-size:1.16rem;margin-bottom:8px;}
+  .card h4{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin-bottom:12px;}
+  .card p{font-size:.96rem;color:var(--muted);margin:0;}
+  .card ul{margin:0;padding-left:1.05em;}
+  .card li{font-size:.95rem;margin-bottom:7px;color:var(--ink);}
+  .card li::marker{color:var(--accent);}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.04em;padding:3px 9px;border-radius:20px;font-weight:600;}
+  .t-reuse{background:var(--good-soft);color:var(--good);}
+  .t-cut{background:var(--crit-soft);color:var(--crit);}
+  .t-new{background:var(--accent-soft);color:var(--accent-ink);}
+
+  /* ---- callout ---- */
+  .callout{border-radius:14px;padding:20px 22px;margin-top:26px;border:1px solid var(--line);background:var(--surface-2);
+    display:flex;gap:15px;align-items:flex-start;}
+  .callout .ic{flex-shrink:0;width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:18px;}
+  .callout.rec{border-color:color-mix(in srgb,var(--good) 40%,var(--line));}
+  .callout.rec .ic{background:var(--good-soft);}
+  .callout.crit{border-color:color-mix(in srgb,var(--crit) 45%,var(--line));background:var(--crit-soft);}
+  .callout.crit .ic{background:color-mix(in srgb,var(--crit) 22%,transparent);}
+  .callout h4{font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.02em;margin:0 0 5px;text-transform:none;color:var(--ink);}
+  .callout p{margin:0;font-size:.96rem;color:var(--muted);}
+  .callout p+p{margin-top:8px;}
+
+  .positioning{margin-top:26px;border-left:3px solid var(--accent);padding:6px 0 6px 22px;}
+  .positioning .q{font-family:var(--serif);font-size:clamp(1.3rem,2.4vw,1.75rem);line-height:1.3;color:var(--ink);}
+  .positioning .a{color:var(--muted);margin-top:10px;font-size:1rem;}
+
+  /* ---- architecture diagram ---- */
+  .arch{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px;box-shadow:var(--shadow);overflow-x:auto;}
+  .arch-flow{display:flex;flex-direction:column;gap:14px;min-width:520px;}
+  .node{border:1px solid var(--line-strong);border-radius:11px;padding:12px 16px;background:var(--surface-2);}
+  .node .lab{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);}
+  .node .val{font-weight:600;font-size:.98rem;margin-top:2px;}
+  .node.entry{border-color:var(--accent);background:var(--accent-soft);}
+  .node.core{border-width:2px;border-color:var(--accent);}
+  .arrow{text-align:center;color:var(--faint);font-size:14px;line-height:1;}
+  .leaf-row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  @media(max-width:640px){.leaf-row{grid-template-columns:repeat(2,1fr);}}
+  .leaf{border:1px dashed var(--line-strong);border-radius:9px;padding:9px 11px;font-size:.82rem;text-align:center;color:var(--muted);background:var(--surface);}
+  .leaf b{display:block;color:var(--ink);font-size:.86rem;font-weight:600;}
+
+  /* ---- pricing ---- */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;}
+  @media(max-width:820px){.price-grid{grid-template-columns:1fr;}}
+  .plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:24px;position:relative;box-shadow:var(--shadow);display:flex;flex-direction:column;}
+  .plan.pop{border:2px solid var(--accent);}
+  .plan .badge{position:absolute;top:-11px;left:24px;background:var(--accent);color:#fff;font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:3px 10px;border-radius:20px;font-weight:600;}
+  .plan .name{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .plan .price{font-family:var(--serif);font-size:2rem;margin:8px 0 2px;font-variant-numeric:tabular-nums;}
+  .plan .price small{font-size:.9rem;color:var(--muted);font-family:var(--sans);}
+  .plan .usd{font-size:.85rem;color:var(--faint);font-family:var(--mono);}
+  .plan ul{list-style:none;padding:0;margin:16px 0 0;}
+  .plan li{font-size:.92rem;padding:7px 0 7px 24px;position:relative;border-top:1px solid var(--line);color:var(--muted);}
+  .plan li::before{content:"→";position:absolute;left:0;color:var(--accent);}
+  .plan li b{color:var(--ink);font-weight:600;}
+
+  /* ---- KPI ---- */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:22px;}
+  @media(max-width:760px){.kpis{grid-template-columns:1fr 1fr;}}
+  .kpi{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .kpi .big{font-family:var(--serif);font-size:1.9rem;color:var(--accent-ink);font-variant-numeric:tabular-nums;line-height:1;}
+  .kpi .lab{font-size:.8rem;color:var(--muted);margin-top:7px;}
+
+  /* ---- funnel (prueba) ---- */
+  .funnel{display:flex;flex-direction:column;gap:8px;margin-top:26px;}
+  .step{display:grid;grid-template-columns:28px 1fr auto;gap:15px;align-items:center;background:var(--surface-2);border:1px solid var(--line);border-radius:11px;padding:12px 16px;}
+  .step .n{width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;}
+  .step .t b{color:var(--ink);}
+  .step .t span{color:var(--muted);font-size:.92rem;}
+  .step .meta2{font-family:var(--mono);font-size:11px;color:var(--faint);text-align:right;white-space:nowrap;}
+  @media(max-width:560px){.step{grid-template-columns:28px 1fr;}.step .meta2{display:none;}}
+
+  /* ---- dashboard mockup (tablero) ---- */
+  .dash{margin-top:24px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);overflow-x:auto;}
+  .dash table{min-width:660px;margin:0;}
+  .dash th{background:transparent;color:var(--faint);border-bottom:1px solid var(--line-strong);text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);font-size:10.5px;font-weight:600;padding:6px 12px;text-align:left;}
+  .dash td{font-variant-numeric:tabular-nums;font-size:.9rem;padding:9px 12px;border-bottom:1px solid var(--line);}
+  .dash tr:nth-child(even) td{background:transparent;}
+  .dash td.name{font-weight:600;color:var(--ink);}
+  .marg{font-weight:700;color:var(--good);}
+  .pill{font-family:var(--mono);font-size:11px;padding:2px 9px;border-radius:20px;font-weight:600;white-space:nowrap;display:inline-block;}
+  .p-good{background:var(--good-soft);color:var(--good);}
+  .p-warn{background:var(--warn-soft);color:var(--warn);}
+  .p-crit{background:var(--crit-soft);color:var(--crit);}
+  .p-trial{background:var(--accent-soft);color:var(--accent-ink);}
+
+  /* ---- roadmap timeline ---- */
+  .phases{margin-top:30px;display:flex;flex-direction:column;gap:0;}
+  .phase{display:grid;grid-template-columns:112px 1fr;gap:22px;padding:22px 0;border-top:1px solid var(--line);position:relative;}
+  .phase:last-child{border-bottom:1px solid var(--line);}
+  .phase .when{font-family:var(--mono);}
+  .phase .fase{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .phase .dur{font-size:12px;color:var(--faint);margin-top:4px;}
+  .phase h3{font-size:1.2rem;margin-bottom:6px;}
+  .phase p{font-size:.95rem;color:var(--muted);margin:0 0 10px;}
+  .phase .items{display:flex;flex-wrap:wrap;gap:7px;}
+  .phase .items span{font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;color:var(--ink);}
+  @media(max-width:620px){.phase{grid-template-columns:1fr;gap:10px;}}
+
+  /* ---- quality checklist ---- */
+  .qgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:26px;}
+  @media(max-width:900px){.qgrid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:520px){.qgrid{grid-template-columns:1fr;}}
+  .qcol h4{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);margin-bottom:12px;}
+  .qcol ul{list-style:none;margin:0;padding:0;}
+  .qcol li{font-size:.9rem;padding:6px 0 6px 22px;position:relative;color:var(--muted);}
+  .qcol li::before{content:"✓";position:absolute;left:0;color:var(--good);font-weight:700;}
+
+  /* ---- next steps ---- */
+  .next{background:linear-gradient(155deg,var(--surface),var(--surface-2));border:1px solid var(--line-strong);border-radius:18px;padding:30px;margin-top:28px;box-shadow:var(--shadow);}
+  .next ol{margin:18px 0 0;padding-left:0;counter-reset:s;list-style:none;}
+  .next li{position:relative;padding:12px 0 12px 44px;border-top:1px solid var(--line);}
+  .next li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:28px;height:28px;
+    border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;}
+  .next li b{color:var(--ink);}
+  .next li span{color:var(--muted);}
+
+  footer{border-top:1px solid var(--line);padding:34px 0 60px;color:var(--faint);font-size:13px;}
+  footer a{color:var(--muted);}
+  footer .srcs{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:12px;}
+  .disc{font-size:12.5px;color:var(--faint);margin-top:18px;max-width:var(--read);}
+</style>
+
+<header class="bar">
+  <div class="wrap row">
+    <div class="logo"><span class="mark"><span>V</span></span>Vatuta</div>
+    <nav class="top">
+      <a href="#tesis">Tesis</a>
+      <a href="#producto">Producto</a>
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#economia">Economía</a>
+      <a href="#prueba">Prueba</a>
+      <a href="#tablero">Tablero</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#pasos">Empezar</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap inner">
+    <div class="eyebrow">Plan de acción · vatuta.ar</div>
+    <h1>De tu sistema de PLUR a un SaaS que se vende solo.</h1>
+    <p class="lede">Cómo convertir el CRM + bot omnicanal con IA que ya construiste en un producto <strong>multi-tenant</strong>, vendido por <strong>membresía</strong> a las PyMEs de Argentina — con calidad de nivel internacional en producto, código e infraestructura.</p>
+    <div class="chips">
+      <span class="chip"><b>Mercado</b> · PyMEs de Argentina</span>
+      <span class="chip"><b>Modelo</b> · Membresía (SaaS)</span>
+      <span class="chip"><b>Base</b> · repo plur-app-provisorio</span>
+      <span class="chip"><b>Meta</b> · el nombre es <i>batuta</i>: orquestar la atención</span>
+    </div>
+  </div>
+</div>
+
+<!-- 1 · TESIS -->
+<section id="tesis">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><div><h2>La lectura estratégica (sin vueltas)</h2></div></div>
+    <p class="sec-sub">Elegiste horizontal — todas las PyMEs. Es el mercado más grande y también el más peleado: ahí compiten gigantes globales (ManyChat, Respond.io, Callbell, Intercom). Por features genéricos no les ganás. Se gana por <strong>foco local</strong> y por lo que tu código ya hace y ellos no.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h4>Por qué podés ganar en Argentina</h4>
+        <ul>
+          <li><b>Español rioplatense y soporte real</b> en tu zona horaria — no un chat en inglés a las 3 AM.</li>
+          <li><b>Precio en pesos y cobro con Mercado Pago</b>, no una tarjeta internacional que la PyME no tiene.</li>
+          <li><b>Factura AFIP</b> e integración con lo que la PyME argentina ya usa.</li>
+          <li><b>IA que cotiza, reconoce por foto y arma PDF</b> — no un árbol de botones. Ese es tu diferencial ya construido.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>El riesgo de horizontal (y cómo neutralizarlo)</h4>
+        <p>"Para todas las PyMEs" no le habla a ninguna. El producto puede ser horizontal, pero <strong>la forma de venderlo, no</strong>: entrá por 1–2 verticales "faro" donde ya tenés autoridad (venta directa / restauración, gastronomía) con un mensaje afiladísimo, y desde ahí generalizás.</p>
+        <p style="margin-top:10px;color:var(--ink);font-weight:600;">Regla: vender vertical, construir horizontal.</p>
+      </div>
+    </div>
+
+    <div class="positioning">
+      <div class="q">"Vatuta: el WhatsApp-CRM con IA, hecho para la PyME argentina. Atendé, cotizá y vendé por WhatsApp, Instagram y tu web — desde una sola bandeja."</div>
+      <div class="a">Ese es el posicionamiento. Concreto, local, y apoyado en algo que ya funciona en producción (PLUR es tu caso 0, con números reales).</div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · ONBOARDING -->
+<section id="onboarding">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><div><h2>Mi recomendación sobre el onboarding</h2></div></div>
+    <p class="sec-sub">Me lo dejaste a mí. Recomiendo <strong>híbrido, pero secuenciado</strong>: no arranques con self-service puro aunque el objetivo final sea ese. La razón es puramente económica y de riesgo.</p>
+
+    <div class="callout rec">
+      <div class="ic">✓</div>
+      <div>
+        <h4>Híbrido secuenciado — el camino que menos plata quema</h4>
+        <p><b>Meses 1–3 (asistido):</b> vos conectás el WhatsApp de cada cliente y le dejás la config andando. Aprendés qué hay que automatizar <em>antes</em> de invertir en el alta self-service, que es la parte más cara y frágil de todo el sistema.</p>
+        <p><b>En paralelo desde el día 1:</b> arrancá la verificación de negocio de Meta y el alta como <strong>Tech Provider</strong>. Tarda semanas y es lo que después habilita el self-service — si no lo empezás ya, te bloquea más adelante.</p>
+        <p><b>Con ~5–10 clientes:</b> prendés el self-service (Embedded Signup) + un plan "llave en mano" pago para quien no quiere tocar nada. Ese es el híbrido final que buscás.</p>
+      </div>
+    </div>
+
+    <div class="callout crit">
+      <div class="ic">⚠︎</div>
+      <div>
+        <h4>El cuello de botella que define todo: conectar el WhatsApp de cada cliente</h4>
+        <p>Para que un cliente use <em>su</em> número de WhatsApp desde Vatuta necesitás ser <strong>Tech Provider de Meta</strong> e integrar <strong>Embedded Signup</strong>. Requiere verificación de negocio, App Review con <em>Advanced access</em> a <code>whatsapp_business_management</code>, y al principio Meta te limita a <strong>10 clientes nuevos cada 7 días</strong>. Además, cada cliente debe cargar su tarjeta en su cuenta de WhatsApp. No es opcional: es la puerta de entrada del producto.</p>
+        <p>Docs: <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/embedded-signup/overview">Embedded Signup (Meta)</a> · <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/get-started-for-tech-providers">Become a Tech Provider</a> · <a href="https://www.twilio.com/docs/whatsapp/isv/tech-provider-program/integration-guide">Guía Tech Provider (Twilio)</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · PRODUCTO -->
+<section id="producto">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><div><h2>El producto: qué es el enlatado</h2></div></div>
+    <p class="sec-sub">La buena noticia: el 70% ya está construido y probado. El trabajo es <strong>separar lo genérico de lo específico de PLUR</strong> y sumar la capa de SaaS.</p>
+
+    <div class="grid g3">
+      <div class="card">
+        <span class="tag t-reuse">Se reusa · el núcleo</span>
+        <ul style="margin-top:14px;">
+          <li>Bot omnicanal con IA (WhatsApp/IG/FB/web)</li>
+          <li>Bandeja unificada con media</li>
+          <li>CRM de leads + ruteo</li>
+          <li>Presupuestos con PDF</li>
+          <li>Envíos, push, email</li>
+          <li>Seguridad, roles, panel PWA, widget web</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag t-cut">Se generaliza · lo de PLUR</span>
+        <ul style="margin-top:14px;">
+          <li>Padrón de representantes (MLM)</li>
+          <li>Catálogo restauración / Glasé</li>
+          <li>Reglas de ruteo Clara/Ciudadela</li>
+        </ul>
+        <p style="margin-top:12px;">Pasan a ser <b>plantillas de vertical</b> opcionales, no el corazón del producto.</p>
+      </div>
+      <div class="card">
+        <span class="tag t-new">Se agrega · la capa SaaS</span>
+        <ul style="margin-top:14px;">
+          <li>Multi-tenant (aislamiento por cliente)</li>
+          <li>Alta self-service + billing</li>
+          <li>Editor del bot/prompt sin código</li>
+          <li>Branding por cliente (white-label)</li>
+          <li>Panel de super-admin (vos)</li>
+          <li>Métricas de valor + i18n</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · ARQUITECTURA -->
+<section id="arquitectura">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">04</span><div><h2>Arquitectura multi-tenant</h2></div></div>
+    <p class="sec-sub"><strong>Sí: todos entran por vatuta.ar.</strong> Una sola app, un solo código, muchos clientes aislados. Cloudflare (Workers + D1 + R2) es una base ideal y baratísima para esto — la misma que ya usás.</p>
+
+    <div class="arch">
+      <div class="arch-flow">
+        <div class="node entry"><div class="lab">Entrada única</div><div class="val">vatuta.ar → app.vatuta.ar (panel) · api.vatuta.ar (Worker) · cliente.vatuta.ar / dominio propio (white-label)</div></div>
+        <div class="arrow">↓</div>
+        <div class="node core"><div class="lab">Cloudflare Worker · router + auth</div><div class="val">Resuelve el <code>tenant</code> en cada request y revalida permisos <b>deny-by-default por cliente</b> (tu doctrina actual, extendida a multi-tenant)</div></div>
+        <div class="arrow">↓</div>
+        <div class="leaf-row">
+          <div class="leaf"><b>D1</b>datos con <code>tenant_id</code> → DB-por-cliente para grandes</div>
+          <div class="leaf"><b>R2</b>archivos por cliente (bucket/prefijo)</div>
+          <div class="leaf"><b>Gemini</b>IA con límite por plan</div>
+          <div class="leaf"><b>WhatsApp</b>Embedded Signup (Tech Provider)</div>
+        </div>
+        <div class="arrow">↓</div>
+        <div class="leaf-row">
+          <div class="leaf"><b>Mercado Pago</b>suscripciones + corte por impago</div>
+          <div class="leaf"><b>Feature flags</b>qué ve cada plan</div>
+          <div class="leaf"><b>Observability</b>logs/errores por tenant</div>
+          <div class="leaf"><b>Backups</b>y estado (status page)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:16px;">
+      <div class="card">
+        <h4>Aislamiento — la decisión clave</h4>
+        <p style="margin-bottom:10px;"><b>MVP:</b> una sola base con columna <code>tenant_id</code> en todas las tablas + revalidación por tenant en el Worker. Simple y suficiente para cientos de clientes.</p>
+        <p><b>Escala/enterprise:</b> migrar a <b>una base D1 por cliente</b> (aislamiento físico, $0 cuando está ociosa; ojo el tope de 10 GB por D1 obliga a shardear al crecer). <a href="https://architectingoncloudflare.com/chapter-23/">Patrón multi-tenant en Cloudflare</a>.</p>
+      </div>
+      <div class="card">
+        <h4>Cobros recurrentes</h4>
+        <p style="margin-bottom:10px;"><b>Mercado Pago Suscripciones</b> (preapproval): planes recurrentes, prueba gratis, y baja/corte automático si no pagan. Es el estándar para cobrar a PyMEs argentinas.</p>
+        <p>Después, para vender afuera, sumás Stripe. Docs: <a href="https://www.mercadopago.com.ar/developers/es/docs/subscriptions/landing">MP Suscripciones</a>.</p>
+      </div>
+    </div>
+
+    <div class="callout crit">
+      <div class="ic">◎</div>
+      <div>
+        <h4>Dónde está el 80% del riesgo técnico</h4>
+        <p>En solo dos cosas: <b>(1) el aislamiento multi-tenant</b> — una fuga de datos entre clientes te mata el negocio — y <b>(2) el onboarding de WhatsApp</b> (Embedded Signup + Tech Provider). Todo lo demás ya lo tenés construido o es estándar. Ahí es donde hay que poner el mejor código y los tests más duros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · MEMBRESÍA -->
+<section id="precios">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">05</span><div><h2>El modelo de membresía</h2></div></div>
+    <p class="sec-sub">Cuota fija por plan (que cubra tu costo base + margen) con <strong>límites por conversaciones/IA</strong> y cobro por excedente. Sin límites, los costos por mensaje de Meta y la IA se comen el margen. Valores de referencia — se calibran con datos reales.</p>
+
+    <div class="price-grid">
+      <div class="plan">
+        <div class="name">Starter</div>
+        <div class="price">$25.000 <small>/ mes</small></div>
+        <div class="usd">≈ USD 20 · PyME chica</div>
+        <ul>
+          <li><b>1 canal</b> (WhatsApp)</li>
+          <li><b>1.000</b> conversaciones IA / mes</li>
+          <li>1 usuario · bandeja</li>
+          <li>CRM de leads básico</li>
+        </ul>
+      </div>
+      <div class="plan pop">
+        <div class="badge">Más elegido</div>
+        <div class="name">Pro</div>
+        <div class="price">$60.000 <small>/ mes</small></div>
+        <div class="usd">≈ USD 50 · el que va a vender más</div>
+        <ul>
+          <li><b>4 canales</b> + bandeja unificada</li>
+          <li><b>5.000</b> conversaciones IA / mes</li>
+          <li>Hasta 3 usuarios</li>
+          <li>Presupuestos con PDF + envíos</li>
+          <li>Reportes de valor mensuales</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <div class="name">Business</div>
+        <div class="price">$150.000 <small>/ mes</small></div>
+        <div class="usd">≈ USD 120 · empresa mediana</div>
+        <ul>
+          <li>Multiusuario + roles</li>
+          <li>Conversaciones altas + excedente</li>
+          <li><b>Branding propio</b> (white-label)</li>
+          <li>Integraciones + soporte prioritario</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpis">
+      <div class="kpi"><div class="big">65–80%</div><div class="lab">margen bruto por cliente</div></div>
+      <div class="kpi"><div class="big">USD 15–30</div><div class="lab">costo variable / cliente / mes</div></div>
+      <div class="kpi"><div class="big">1 mes</div><div class="lab">gratis + 2 meses off en anual</div></div>
+      <div class="kpi"><div class="big">~USD 2.500</div><div class="lab">MRR con 50 clientes Pro</div></div>
+    </div>
+    <p class="disc">Costos variables = WhatsApp (Meta cobra por mensaje desde jul-2025) + IA (Gemini) + infra. La cuota fija los cubre y el excedente protege el margen cuando un cliente dispara el volumen. Setup "llave en mano" opcional: USD 300–800 por única vez.</p>
+  </div>
+</section>
+
+<!-- 6 · ECONOMÍA -->
+<section id="economia">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">06</span><div><h2>Economía y costos: entender el margen</h2></div></div>
+    <p class="sec-sub">Para manejar el negocio con datos tenés que saber exactamente qué te cuesta cada cliente. La buena noticia: para un bot que <strong>responde</strong> (no que spamea), los costos son bajísimos y predecibles.</p>
+
+    <div class="grid g2">
+      <div class="card">
+        <h4>Costo variable por cliente / mes (bot reactivo)</h4>
+        <table style="margin-top:4px;">
+          <tr><td>IA (Gemini Flash)</td><td class="val">US$5–20</td></tr>
+          <tr><td>WhatsApp · mensajes de servicio (24 h)</td><td class="val">≈ US$0</td></tr>
+          <tr><td>Servidor + email + captcha</td><td class="val">US$1–3</td></tr>
+          <tr><td><b>Total típico</b></td><td class="val">≈ US$10–25</td></tr>
+        </table>
+        <p style="margin-top:10px;">Cobrás ~US$50 (Pro) → <b>margen 60–80%</b>. <a href="https://ai.google.dev/gemini-api/docs/pricing">Precios Gemini</a>.</p>
+      </div>
+      <div class="card">
+        <h4>¿Quién le paga a Meta? · la decisión clave</h4>
+        <table style="margin-top:4px;">
+          <tr><th>Modelo</th><th style="text-align:right">Paga WhatsApp</th></tr>
+          <tr><td><b>Tech Provider</b> · al inicio</td><td class="val">el cliente, directo a Meta</td></tr>
+          <tr><td><b>Solution Partner</b> · con escala</td><td class="val">vos, y marcás sobreprecio</td></tr>
+        </table>
+        <p style="margin-top:10px;">Empezá como Tech Provider: no cargás el costo variable de Meta hasta tener volumen. <a href="https://whautomate.com/whatsapp-tech-provider-vs-bsp">Tech Provider vs BSP</a>.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">◆</div>
+      <div>
+        <h4>Las dos reglas que protegen tu margen</h4>
+        <p><b>1. WhatsApp reactivo es casi gratis:</b> los mensajes dentro de las 24 h que abre el cliente no se cobran. El costo real está en las campañas salientes (marketing), que cobrás aparte como add-on.</p>
+        <p><b>2. Límite por plan + excedente:</b> cada plan incluye X conversaciones; si el cliente se pasa, paga el excedente o sube de plan. Sin esto, un cliente pesado te come la ganancia — se ve clarito en "Inmobiliaria Sur" del tablero de abajo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · PRUEBA -->
+<section id="prueba">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">07</span><div><h2>Primer mes gratis → activación → conversión</h2></div></div>
+    <p class="sec-sub">La estrategia de crecimiento: regalar el <strong>primer mes completo</strong> para que el cliente <strong>deje todo montado y andando</strong>. Lo que engancha no es el regalo — es su bot ya funcionando en todos sus canales. Te cuesta ~US$5–20 por prueba, y los únicos que agotan las 1000 conversaciones son justo los que pagan sin dudar.</p>
+
+    <div class="funnel">
+      <div class="step"><div class="n">1</div><div class="t"><b>Se registra · sin tarjeta</b> <span>· usuario y contraseña, 30 segundos</span></div><div class="meta2">sin fricción</div></div>
+      <div class="step"><div class="n">2</div><div class="t"><b>Prueba el bot en su web</b> <span>· momento "aha" inmediato, sin el trámite de Meta</span></div><div class="meta2">chat web</div></div>
+      <div class="step"><div class="n">3</div><div class="t"><b>Conecta TODOS sus canales</b> <span>· WhatsApp + Instagram + Facebook + web → el enganche profundo</span></div><div class="meta2">Embedded Signup</div></div>
+      <div class="step"><div class="n">4</div><div class="t"><b>Primer mes gratis · servicio completo</b> <span>· hasta 1000 conversaciones, 30 días</span></div><div class="meta2">todo incluido</div></div>
+      <div class="step"><div class="n">5</div><div class="t"><b>Nudges de valor + cuenta regresiva</b> <span>· "ya atendiste 47 consultas · tu mes termina el 12/08"</span></div><div class="meta2">urgencia sana</div></div>
+      <div class="step"><div class="n">6</div><div class="t"><b>Se termina → el bot se pausa (no se borra) → paga</b> <span>· un clic y vuelve a andar, con todo intacto</span></div><div class="meta2">Mercado Pago</div></div>
+    </div>
+
+    <div class="grid g2">
+      <div class="callout rec" style="margin-top:0;">
+        <div class="ic">✓</div>
+        <div>
+          <h4>Por qué "primer mes gratis" y no "gratis para siempre"</h4>
+          <p>Un plan gratis permanente hace que las PyMEs chicas nunca paguen. El mes completo, limitado a 30 días, mantiene la urgencia por el <b>tiempo</b> (no por el contador) y hace que vivan leads reales entrando. Y hay auto-selección: <b>el único que agota las 1000 conversaciones es el negocio grande, que paga US$50 sin pestañear</b>.</p>
+        </div>
+      </div>
+      <div class="callout" style="margin-top:0;">
+        <div class="ic">◆</div>
+        <div>
+          <h4>Sin tarjeta — a propósito, por ahora</h4>
+          <p>Todavía no te conoce nadie: pedir la tarjeta de una, siendo marca nueva y sin casos que te avalen, mata la confianza y las altas. Primero ganás prueba social (PLUR y los primeros clientes felices). <b>El disparador para activar la tarjeta al inicio: negocio ya validado (~100 clientes y casos que hablan por vos)</b> — ahí la fricción sube la conversión en vez de espantar. El orden: confianza primero, fricción después.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · TABLERO -->
+<section id="tablero">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">08</span><div><h2>Tu tablero de control · saber todo</h2></div></div>
+    <p class="sec-sub">Para manejar el negocio necesitás ver, de un vistazo, cuánto entra, cuánto cuesta y qué margen deja cada cliente — y qué necesita tu atención. Vive en tu panel de super-admin dentro de Vatuta. Así se vería con ~50 clientes:</p>
+
+    <div class="kpis">
+      <div class="kpi"><div class="big">US$2.480</div><div class="lab">MRR · ingreso recurrente</div></div>
+      <div class="kpi"><div class="big">68%</div><div class="lab">margen neto</div></div>
+      <div class="kpi"><div class="big">47 · 12</div><div class="lab">activos · en prueba</div></div>
+      <div class="kpi"><div class="big">3,2%</div><div class="lab">baja mensual (churn)</div></div>
+    </div>
+
+    <div class="dash">
+      <table>
+        <tr><th>Cliente</th><th>Plan</th><th>Ingreso</th><th>Costo</th><th>Margen</th><th>Uso</th><th>Estado</th></tr>
+        <tr><td class="name">Panadería Rosales</td><td>Pro</td><td>US$50</td><td>US$14</td><td class="marg">72%</td><td>3.240 / 5.000</td><td><span class="pill p-good">Activo</span></td></tr>
+        <tr><td class="name">Estudio Contable MV</td><td>Business</td><td>US$120</td><td>US$22</td><td class="marg">82%</td><td>8.100</td><td><span class="pill p-good">Activo</span></td></tr>
+        <tr><td class="name">Kiosco 24h</td><td>Starter</td><td>US$20</td><td>US$9</td><td class="marg">55%</td><td>940 / 1.000</td><td><span class="pill p-warn">Cerca del límite</span></td></tr>
+        <tr><td class="name">Inmobiliaria Sur</td><td>Pro</td><td>US$50</td><td>US$31</td><td class="marg" style="color:var(--warn)">38%</td><td>6.800 / 5.000</td><td><span class="pill p-warn">Excedente → subir plan</span></td></tr>
+        <tr><td class="name">Peluquería Delfi</td><td>—</td><td>US$0</td><td>US$8</td><td>—</td><td>310 / 1.000</td><td><span class="pill p-trial">Mes gratis · día 12</span></td></tr>
+        <tr><td class="name">Taller Gómez</td><td>Starter</td><td>US$20</td><td>US$8</td><td class="marg" style="color:var(--crit)">impago</td><td>210 / 1.000</td><td><span class="pill p-crit">Pago vencido</span></td></tr>
+      </table>
+      <p style="margin:12px 0 0;color:var(--faint);font-size:.85rem;">+ 41 clientes más · datos de ejemplo</p>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px;">
+      <div class="card"><h4>Por cliente</h4><ul><li>Ingreso, costo (IA + WhatsApp) y <b>margen real</b></li><li>Uso vs. límite del plan</li><li>Estado de pago y de cada canal</li></ul></div>
+      <div class="card"><h4>Global del negocio</h4><ul><li>MRR, margen neto, churn</li><li>Tasa de activación de las pruebas</li><li>LTV / CAC · cuánto vale vs. cuesta un cliente</li></ul></div>
+      <div class="card"><h4>Alertas que saltan solas</h4><ul><li>Cerca del límite → oportunidad de upsell</li><li>Token de Meta por vencer → reconectar</li><li>Prueba por terminar · pago vencido</li></ul></div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">◎</div>
+      <div>
+        <h4>Esto es lo que te deja manejar 50 clientes sin perder el control</h4>
+        <p>Cada número sale solo de datos que el sistema ya genera (conversaciones, tokens de IA, pagos) — no es trabajo manual, es una vista sobre tu propia base. <b>El margen por cliente es la brújula:</b> te dice a quién subir de plan, a quién ayudar y qué plan ajustar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · GTM -->
+<section id="gtm">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">09</span><div><h2>Cómo se vende</h2></div></div>
+    <p class="sec-sub">Todos entran por <strong>vatuta.ar</strong>: sitio → prueba gratis → asistente de alta → paga con Mercado Pago. Dos motores de venta conviviendo.</p>
+    <div class="grid g3">
+      <div class="card">
+        <h4>Motor 1 · Self-serve (planes chicos)</h4>
+        <p>Bajo contacto. La landing convierte, el cliente se registra y activa solo. Optimizás el funnel, no vendés uno por uno. Ideal Starter/Pro.</p>
+      </div>
+      <div class="card">
+        <h4>Motor 2 · Ventas asistidas (Business)</h4>
+        <p>Demos, propuestas y setup llave en mano para tickets grandes. Acá PLUR es tu caso de éxito con números reales.</p>
+      </div>
+      <div class="card">
+        <h4>Canales de adquisición</h4>
+        <ul>
+          <li>Contenido/SEO ("chatbot whatsapp argentina")</li>
+          <li>Partnerships: agencias de marketing y contadores (revenue share)</li>
+          <li>Comunidades PyME + casos reales</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>El "momento aha"</h4>
+        <p>Primer lead atendido solo por el bot en <b>&lt;10 min</b> desde el alta. Todo el asistente de onboarding se diseña para llegar ahí rápido: si lo ven funcionar, pagan.</p>
+      </div>
+      <div class="card">
+        <h4>Retención</h4>
+        <p>Reporte mensual automático: cuántas consultas respondió el bot, cuántos leads capturó, cuánto tiempo ahorró. El valor tiene que ser visible para que no den de baja.</p>
+      </div>
+      <div class="card">
+        <h4>Prueba social</h4>
+        <p>PLUR (y luego glasé) como casos ancla en la web, con métricas. Un SaaS sin casos no lo compra nadie; vos ya tenés uno en producción.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · ROADMAP -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">10</span><div><h2>Roadmap por fases</h2></div></div>
+    <p class="sec-sub">Elegiste ir a la plataforma completa. Igual se construye en fases — no porque no vayas a full, sino porque cada fase desbloquea a la siguiente. Estimación realista a plataforma self-service completa: <strong>~4–7 meses</strong>.</p>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="when"><div class="fase">Fase 0</div><div class="dur">2–4 sem · en paralelo</div></div>
+        <div>
+          <h3>Fundaciones (legal + Meta + marca)</h3>
+          <p>Lo que tarda por terceros y no puede esperar. Se hace mientras se programa la Fase 1.</p>
+          <div class="items"><span>Sociedad / monotributo</span><span>Verificación de negocio Meta</span><span>Alta Tech Provider</span><span>Términos + Privacidad (Ley 25.326)</span><span>Marca Vatuta</span><span>Cuenta Mercado Pago</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="fase">Fase 1</div><div class="dur">4–8 sem</div></div>
+        <div>
+          <h3>Núcleo multi-tenant</h3>
+          <p>El corazón. Convertir tu código actual para que sirva a muchos clientes aislados. Alta manual de clientes (todavía asistida).</p>
+          <div class="items"><span><code>tenant_id</code> en toda la base</span><span>Aislamiento en el Worker</span><span>Panel super-admin</span><span>Sacar lo de PLUR a plantillas</span><span>Tests de aislamiento</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="fase">Fase 2</div><div class="dur">4–8 sem</div></div>
+        <div>
+          <h3>Self-service + billing</h3>
+          <p>Que un cliente se dé de alta, conecte su WhatsApp y pague — solo. Acá se cierra el modelo de membresía.</p>
+          <div class="items"><span>Registro público + wizard</span><span>Embedded Signup WhatsApp</span><span>Mercado Pago Suscripciones</span><span>Límites y excedentes por plan</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="fase">Fase 3</div><div class="dur">4–8 sem</div></div>
+        <div>
+          <h3>Producto sofisticado</h3>
+          <p>De "funciona" a "nivel internacional". Lo que hace que se vea y se sienta premium.</p>
+          <div class="items"><span>Editor de bot sin código</span><span>Branding / white-label</span><span>Reportes de valor</span><span>i18n</span><span>Observability + status page</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="fase">Fase 4</div><div class="dur">continuo</div></div>
+        <div>
+          <h3>Escala e internacional</h3>
+          <p>Cuando ya hay clientes pagando y querés crecer y salir de Argentina.</p>
+          <div class="items"><span>DB-por-tenant para grandes</span><span>Multi-región</span><span>Stripe (afuera)</span><span>Certificaciones de seguridad</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · CALIDAD -->
+<section id="calidad">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">11</span><div><h2>La vara "nivel internacional"</h2></div></div>
+    <p class="sec-sub">No es un adorno: es lo que separa un MVP barato de un producto que una empresa confía y paga. Lo bueno es que ya cumplís buena parte (tests, CI, seguridad, degradar-sin-romper).</p>
+    <div class="qgrid">
+      <div class="qcol">
+        <h4>Código</h4>
+        <ul><li>Tests + CI (ya lo tenés)</li><li>Tests de aislamiento multi-tenant</li><li>Code review disciplinado</li><li>Observability y trazas</li><li>Feature flags por plan</li></ul>
+      </div>
+      <div class="qcol">
+        <h4>Producto</h4>
+        <ul><li>Design system consistente</li><li>Onboarding guiado (aha rápido)</li><li>i18n desde el diseño</li><li>Accesibilidad</li><li>Editor sin código</li></ul>
+      </div>
+      <div class="qcol">
+        <h4>Infra</h4>
+        <ul><li>Multi-región + backups</li><li>Status page pública</li><li>Rate limits (ya los tenés)</li><li>Recuperación ante fallos</li><li>Métricas de uso por tenant</li></ul>
+      </div>
+      <div class="qcol">
+        <h4>Confianza / legal</h4>
+        <ul><li>Términos + Privacidad</li><li>Datos personales (Ley 25.326)</li><li>Facturación AFIP</li><li>Política de datos por cliente</li><li>Auditoría (ya la tenés)</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · PASOS -->
+<section id="pasos">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">12</span><div><h2>Por dónde arrancamos</h2></div></div>
+    <div class="next">
+      <p style="margin:0;color:var(--muted);">El repo <code>vatuta.ar</code> ya existe. Yo puedo empezar a construir sobre tu código actual apenas me des el OK. Opciones concretas, en orden de impacto:</p>
+      <ol>
+        <li><b>Plan técnico del núcleo multi-tenant (Fase 1).</b> <span>Qué tablas tocar, cómo agregar <code>tenant_id</code>, cómo aislar por cliente en el Worker sin romper tu doctrina deny-by-default, y qué tests de aislamiento escribir. Es el paso que desbloquea todo.</span></li>
+        <li><b>Andamiaje del repo vatuta.</b> <span>Dejar la estructura del SaaS montada sobre el núcleo reusable de PLUR, con lo específico ya separado en plantillas de vertical.</span></li>
+        <li><b>Landing de vatuta.ar.</b> <span>Una página sofisticada (como esta) para captar la prueba gratis y contar el caso PLUR — el primer activo de venta.</span></li>
+        <li><b>Checklist de Fase 0.</b> <span>Guía paso a paso, con links, para la verificación de negocio de Meta y el alta como Tech Provider — lo que hay que empezar ya porque tarda.</span></li>
+      </ol>
+      <p style="margin:18px 0 0;color:var(--ink);font-weight:600;">Decime cuál querés primero y lo hago. Mi sugerencia: 1 y 4 en paralelo (uno lo programo yo, el otro lo gestionás vos con Meta).</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Plan preparado sobre el estado real del repo <code>povoronik/plur-app-provisorio</code> · julio 2026. Los precios y plazos son de referencia y se calibran con datos reales.</div>
+    <div class="srcs">
+      <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/embedded-signup/overview">Meta · Embedded Signup</a>
+      <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/solution-providers/get-started-for-tech-providers">Meta · Tech Provider</a>
+      <a href="https://developers.facebook.com/documentation/business-messaging/whatsapp/pricing">Meta · WhatsApp pricing</a>
+      <a href="https://www.mercadopago.com.ar/developers/es/docs/subscriptions/landing">Mercado Pago · Suscripciones</a>
+      <a href="https://architectingoncloudflare.com/chapter-23/">Cloudflare · Multi-tenant</a>
+    </div>
+  </div>
+</footer>
+
+</body></html>

@@ -1,0 +1,329 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">
+<title>Vatuta · Plan de marketing y crecimiento</title>
+<style>
+  :root{
+    --bg:#F1F0EC; --surface:#FBFAF7; --surface-2:#F6F4EF;
+    --ink:#1A1A16; --muted:#6B695F; --faint:#949186;
+    --line:#E2DFD6; --line-strong:#CFCBBF;
+    --accent:#A96E15; --accent-ink:#6E4708; --accent-soft:#F1E4C8;
+    --good:#2E7A52; --good-soft:#E1F0E6;
+    --blue:#345E8C; --blue-soft:#E3ECF5;
+    --shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);
+    --maxw:1080px; --read:70ch;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{--bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;--line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;--good:#5BC08A;--good-soft:#132419;--blue:#7CA6D8;--blue-soft:#14202E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);}}
+  :root[data-theme="light"]{--bg:#F1F0EC;--surface:#FBFAF7;--surface-2:#F6F4EF;--ink:#1A1A16;--muted:#6B695F;--faint:#949186;--line:#E2DFD6;--line-strong:#CFCBBF;--accent:#A96E15;--accent-ink:#6E4708;--accent-soft:#F1E4C8;--good:#2E7A52;--good-soft:#E1F0E6;--blue:#345E8C;--blue-soft:#E3ECF5;--shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);}
+  :root[data-theme="dark"]{--bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;--line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;--good:#5BC08A;--good-soft:#132419;--blue:#7CA6D8;--blue-soft:#14202E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation:none!important;}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.14;text-wrap:balance;margin:0;letter-spacing:-.01em;}
+  p{margin:0 0 .9em;}
+  a{color:var(--accent-ink);text-underline-offset:3px;}
+  code{font-family:var(--mono);font-size:.86em;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:.5px 5px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line);}
+  .bar .row{display:flex;align-items:center;gap:20px;height:58px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:17px;}
+  .mark{width:29px;height:29px;border-radius:8px;background:linear-gradient(150deg,var(--accent),var(--accent-ink));color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:17px;}
+  nav.top{margin-left:auto;display:flex;gap:19px;}
+  nav.top a{font-size:13.5px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;}
+  nav.top a:hover{color:var(--ink);}
+  @media(max-width:820px){nav.top{display:none;}}
+
+  .hero{padding:60px 0 30px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 55% at 90% 0%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 60%);}
+  .hero .inner{position:relative;}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.6rem);margin:.3em 0 .3em;max-width:17ch;}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:60ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:6px 13px;box-shadow:var(--shadow);}
+  .chip b{color:var(--accent-ink);font-weight:600;}
+
+  section{padding:46px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .sec-head .no{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:600;padding-top:4px;}
+  h2{font-size:clamp(1.6rem,2.9vw,2.2rem);}
+  .sec-sub{color:var(--muted);max-width:var(--read);margin-top:10px;font-size:1.03rem;}
+
+  .grid{display:grid;gap:15px;margin-top:22px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:880px){.g3{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.g2,.g3{grid-template-columns:1fr;}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:18px 20px;box-shadow:var(--shadow);}
+  .card h3{font-size:1.08rem;margin-bottom:9px;display:flex;align-items:center;gap:9px;}
+  .card h3 .ico{width:27px;height:27px;border-radius:7px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-size:14px;flex-shrink:0;}
+  .card ul{margin:0;padding-left:1.05em;}
+  .card li{font-size:.92rem;margin-bottom:6px;}
+  .card li::marker{color:var(--accent);}
+  .card li b{color:var(--ink);}
+  .card p{font-size:.93rem;color:var(--muted);margin:0;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;padding:3px 8px;border-radius:20px;font-weight:600;margin-bottom:9px;}
+  .t-now{background:var(--good-soft);color:var(--good);} .t-mid{background:var(--accent-soft);color:var(--accent-ink);} .t-slow{background:var(--blue-soft);color:var(--blue);}
+
+  table{width:100%;border-collapse:collapse;margin-top:22px;font-size:.92rem;}
+  .tblwrap{overflow-x:auto;}
+  th{background:var(--accent);color:#fff;text-align:left;padding:9px 13px;font-size:11px;font-weight:700;font-family:var(--mono);letter-spacing:.03em;text-transform:uppercase;white-space:nowrap;}
+  td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--surface-2);}
+  td.net{font-weight:700;color:var(--ink);white-space:nowrap;}
+  td .fmt{font-family:var(--mono);font-size:11px;color:var(--accent-ink);}
+
+  .callout{border-radius:13px;padding:18px 20px;border:1px solid var(--line);background:var(--surface-2);display:flex;gap:14px;align-items:flex-start;margin-top:22px;}
+  .callout .ic{flex-shrink:0;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);}
+  .callout.good{border-color:color-mix(in srgb,var(--good) 40%,var(--line));} .callout.good .ic{background:var(--good-soft);}
+  .callout h4{font-family:var(--sans);font-weight:700;font-size:14px;margin:0 0 5px;color:var(--ink);}
+  .callout p{margin:0;font-size:.94rem;color:var(--muted);}
+
+  .funnel-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:22px;font-family:var(--mono);font-size:12.5px;}
+  .funnel-line .b{background:var(--surface);border:1px solid var(--line-strong);border-radius:8px;padding:9px 13px;box-shadow:var(--shadow);}
+  .funnel-line .b b{color:var(--accent-ink);}
+  .funnel-line .ar{color:var(--faint);}
+
+  .ladder{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px;}
+  @media(max-width:760px){.ladder{grid-template-columns:1fr;}}
+  .rung{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--surface);box-shadow:var(--shadow);}
+  .rung .amt{font-family:var(--serif);font-size:1.5rem;color:var(--accent-ink);}
+  .rung .lab{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--faint);margin-top:2px;}
+  .rung p{font-size:.9rem;color:var(--muted);margin:9px 0 0;}
+
+  .phase{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:20px 0;border-top:1px solid var(--line);}
+  .phase:last-child{border-bottom:1px solid var(--line);}
+  .phase .when .p{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .phase .when .d{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:3px;}
+  .phase h3{font-size:1.15rem;margin-bottom:6px;}
+  .phase p{font-size:.94rem;color:var(--muted);margin:0 0 10px;}
+  .phase .items{display:flex;flex-wrap:wrap;gap:7px;}
+  .phase .items span{font-size:12.5px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;}
+  @media(max-width:620px){.phase{grid-template-columns:1fr;gap:8px;}}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 56px;color:var(--faint);font-size:12.5px;}
+  footer a{color:var(--muted);}
+  .srcs{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:10px;}
+  h2,h3{page-break-after:avoid;}
+</style>
+
+<header class="bar">
+  <div class="wrap row">
+    <div class="logo"><span class="mark">V</span>Vatuta · Marketing</div>
+    <nav class="top">
+      <a href="#marca">Marca</a>
+      <a href="#seo">SEO</a>
+      <a href="#ads">Ads</a>
+      <a href="#contenido">Contenido</a>
+      <a href="#embudo">Embudo</a>
+      <a href="#fases">Fases</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap inner">
+    <div class="eyebrow">Plan de marketing y crecimiento</div>
+    <h1>Cómo conseguir los primeros 100 clientes.</h1>
+    <p class="lede">Presencia de marca, SEO, Google y Meta Ads, contenido en video y "build in public" en X — un motor de adquisición para PyMEs de Argentina, apalancado en el lanzamiento con precio promocional.</p>
+    <div class="chips">
+      <span class="chip"><b>Mensaje</b> · el bot que cotiza y cierra</span>
+      <span class="chip"><b>Motor rápido</b> · Meta Ads</span>
+      <span class="chip"><b>Activo largo</b> · SEO + contenido</span>
+    </div>
+  </div>
+</div>
+
+<!-- 01 MARCA -->
+<section id="marca">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><div><h2>Fundaciones: existir en todos lados</h2></div></div>
+    <p class="sec-sub">Antes de gastar un peso en ads, la marca tiene que existir y verse profesional en cada plataforma. Handle consistente en todas: <code>@usarvatuta</code> / <code>@vatuta.ar</code>.</p>
+    <div class="grid g3">
+      <div class="card"><h3><span class="ico">🌐</span>Presencia base</h3><ul>
+        <li>Sitio + <b>landings por vertical</b> (una por rubro)</li>
+        <li><b>Google Business Profile</b> (para SEO local)</li>
+        <li>Email de marca, dominio, favicon</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">📱</span>Redes a crear</h3><ul>
+        <li><b>Instagram</b> + <b>TikTok</b> (video, el corazón)</li>
+        <li><b>YouTube</b> (tutoriales, SEO de video)</li>
+        <li><b>Facebook</b> (grupos PyME) + <b>X</b> (build in public)</li>
+        <li><b>LinkedIn</b> (B2B, partnerships)</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">⭐</span>Prueba social ancla</h3><ul>
+        <li><b>PLUR como caso 0</b>: video testimonial con números reales</li>
+        <li>Capturas del bot cotizando y cobrando</li>
+        <li>Reseñas de los primeros clientes (para la web y Google)</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 SEO -->
+<section id="seo">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><div><h2>SEO — sí, va (el activo que se acumula)</h2></div></div>
+    <p class="sec-sub">Es lento pero compuesto: cada página que posiciona te trae clientes gratis para siempre. Se empieza el día 1 aunque los frutos lleguen en meses.</p>
+    <div class="grid g3">
+      <div class="card"><span class="tag t-slow">Largo plazo</span><h3>Palabras clave</h3><ul>
+        <li>Genéricas: <code>chatbot whatsapp argentina</code>, <code>crm para whatsapp</code>, <code>bot para vender por whatsapp</code></li>
+        <li>Por vertical: <code>chatbot para gastronomía</code>, <code>bot de turnos peluquería</code></li>
+        <li>Comparativas: <code>alternativa a Whaticket</code></li>
+      </ul></div>
+      <div class="card"><span class="tag t-slow">Largo plazo</span><h3>Contenido</h3><ul>
+        <li><b>Una landing por vertical</b> (5 rubros = 5 páginas afiladas)</li>
+        <li>Blog: guías ("cómo vender más por WhatsApp"), casos</li>
+        <li>Comparativas honestas vs. competidores</li>
+      </ul></div>
+      <div class="card"><span class="tag t-slow">Largo plazo</span><h3>SEO local + video</h3><ul>
+        <li>Google Business + <b>reseñas</b> (los clientes buscan local)</li>
+        <li><b>YouTube es buscador:</b> tutoriales que posicionan solos</li>
+        <li>Backlinks de notas, podcasts, comunidades</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 ADS -->
+<section id="ads">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><div><h2>Publicidad paga — el motor rápido</h2></div></div>
+    <p class="sec-sub">Mientras el SEO madura, los ads te traen clientes ya. Dos plataformas con roles distintos.</p>
+    <div class="grid g2">
+      <div class="card"><span class="tag t-now">Empezá acá</span><h3><span class="ico">📣</span>Meta Ads (Instagram + Facebook)</h3><ul>
+        <li>El caballito para PyME en LatAm.</li>
+        <li><b>Anuncios click-to-WhatsApp</b> — llevan la charla a tu propio producto (¡demostrás el bot en el primer clic!)</li>
+        <li>Creativos en <b>video por vertical</b>, retargeting y <b>públicos similares (lookalike)</b> de tus clientes</li>
+      </ul></div>
+      <div class="card"><span class="tag t-mid">En paralelo</span><h3><span class="ico">🔎</span>Google Ads</h3><ul>
+        <li>Captura <b>intención de compra</b>: el que busca "software whatsapp" ya quiere comprar</li>
+        <li>Search por keyword + por vertical + <b>remarketing</b></li>
+        <li>Clic más caro, pero intención altísima</li>
+      </ul></div>
+    </div>
+
+    <p style="margin-top:26px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);">Presupuesto escalonado — nunca apuestes fuerte sin datos</p>
+    <div class="ladder">
+      <div class="rung"><div class="amt">Prueba</div><div class="lab">Semanas 1–4</div><p>Poco presupuesto/día en Meta. Probás 3–4 creativos y 2–3 verticales. Medís <b>costo por lead (CPL)</b>.</p></div>
+      <div class="rung"><div class="amt">Doblar</div><div class="lab">Mes 2–3</div><p>Matás lo que no anduvo, ponés más plata en el creativo/vertical ganador. Sumás Google Ads de intención.</p></div>
+      <div class="rung"><div class="amt">Escalar</div><div class="lab">Post-validación</div><p>Escalás solo lo que tiene <b>CAC &lt; LTV</b>. Lookalikes, más verticales, más presupuesto.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 CONTENIDO -->
+<section id="contenido">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">04</span><div><h2>Contenido y video — por red</h2></div></div>
+    <p class="sec-sub">El orgánico es el que baja el costo de adquisición con el tiempo. Cada red tiene su formato y su ángulo — no es "postear lo mismo en todas".</p>
+    <div class="tblwrap">
+      <table>
+        <tr><th>Red</th><th>Formato</th><th>Ángulo</th><th>Ritmo</th></tr>
+        <tr><td class="net">Instagram</td><td><span class="fmt">Reels</span></td><td>El bot en acción: "mirá cómo cotiza y cobra solo". Tips PyME. Antes/después.</td><td>3–4 / sem</td></tr>
+        <tr><td class="net">TikTok</td><td><span class="fmt">video corto</span></td><td>Casos rápidos, "mi bot vendió mientras dormía", detrás de escena. Volumen y ritmo.</td><td>diario</td></tr>
+        <tr><td class="net">YouTube</td><td><span class="fmt">tutorial / caso</span></td><td>Tutoriales, comparativas, casos. Evergreen — posiciona en Google (SEO de video).</td><td>1 / sem</td></tr>
+        <tr><td class="net">Facebook</td><td><span class="fmt">post + grupos</span></td><td>Presencia en <b>grupos de PyME y emprendedores</b>. Comunidad y confianza.</td><td>2–3 / sem</td></tr>
+        <tr><td class="net">X (Twitter)</td><td><span class="fmt">build in public</span></td><td>El fundador cuenta el camino: progreso, métricas, aprendizajes. Genera confianza temprana.</td><td>diario</td></tr>
+        <tr><td class="net">LinkedIn</td><td><span class="fmt">B2B</span></td><td>Alianzas con agencias y contadores. Autoridad en el nicho.</td><td>2 / sem</td></tr>
+      </table>
+    </div>
+    <div class="callout good">
+      <div class="ic">✦</div>
+      <div>
+        <h4>El truco meta: usá tu propio producto como contenido</h4>
+        <p>Cada video que muestra al bot cotizando, cobrando por WhatsApp y recuperando una venta <b>es a la vez demo y anuncio</b>. Y el "build in public" en X resuelve tu problema de confianza inicial: la gente compra al fundador que muestra el camino. Un solo caso bien grabado (PLUR) alimenta semanas de contenido en las 6 redes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CANALES BAJO COSTO -->
+<section id="lowcost">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">05</span><div><h2>Canales de bajo costo, alto impacto</h2></div></div>
+    <div class="grid g3">
+      <div class="card"><h3><span class="ico">🤝</span>Alianzas (revenue share)</h3><p>Agencias de marketing y contadores que ya atienden PyMEs. Les das 20–30% recurrente por cada cliente que traen. El canal que más rápido escala a 100.</p></div>
+      <div class="card"><h3><span class="ico">🎁</span>Referidos</h3><p>Cada cliente que trae otro se lleva un mes gratis (y el nuevo también). Crecimiento que se paga solo.</p></div>
+      <div class="card"><h3><span class="ico">👥</span>Comunidades y cámaras</h3><p>Grupos PyME, cámaras de comercio, ferias de emprendedores. Presencia con el caso PLUR en mano.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 EMBUDO -->
+<section id="embudo">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">06</span><div><h2>El embudo: cómo se conecta todo</h2></div></div>
+    <p class="sec-sub">Todo lo de arriba alimenta un solo camino, medible de punta a punta.</p>
+    <div class="funnel-line">
+      <span class="b"><b>Ads / SEO / contenido</b></span><span class="ar">→</span>
+      <span class="b">landing por <b>vertical</b></span><span class="ar">→</span>
+      <span class="b"><b>mes gratis</b> (sin tarjeta)</span><span class="ar">→</span>
+      <span class="b">onboarding · "aha"</span><span class="ar">→</span>
+      <span class="b"><b>cliente que paga</b></span>
+    </div>
+    <div class="grid g3" style="margin-top:24px;">
+      <div class="card"><h3>Qué medir</h3><ul><li><b>CPL</b> — costo por lead/registro</li><li><b>CAC</b> — costo de adquirir un cliente pago</li><li>Activación (llegó al "aha")</li><li>Conversión prueba → pago</li></ul></div>
+      <div class="card"><h3>La regla de oro</h3><ul><li>Escalás un canal solo si <b>CAC &lt; LTV</b></li><li>LTV ≈ precio × meses que se queda</li><li>Con retención alta, podés pagar CAC alto</li></ul></div>
+      <div class="card"><h3>Por qué cierra</h3><ul><li>La prueba gratis <b>baja la barrera</b> de entrada</li><li>El producto <b>se demuestra solo</b> (el bot anda)</li><li>El precio de lanzamiento <b>apura la decisión</b></li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 FASES -->
+<section id="fases">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">07</span><div><h2>Calendario de marketing por fases</h2></div></div>
+    <p class="sec-sub">Sincronizado con el lanzamiento del producto y el precio promocional de 90 días.</p>
+    <div>
+      <div class="phase">
+        <div class="when"><div class="p">Pre-lanzamiento</div><div class="d">4–6 semanas antes</div></div>
+        <div>
+          <h3>Sembrar</h3>
+          <p>Construir la presencia y el arsenal de contenido mientras el producto se termina.</p>
+          <div class="items"><span>Crear las 6 redes</span><span>Landings por vertical</span><span>Grabar el caso PLUR</span><span>Primeros videos + build in public</span><span>Lista de espera</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="p">Lanzamiento</div><div class="d">los 90 días de promo</div></div>
+        <div>
+          <h3>Empujar fuerte</h3>
+          <p>Todo el gas: la urgencia del precio de lanzamiento es el gancho de cada pieza.</p>
+          <div class="items"><span>Meta Ads (motor)</span><span>Google Ads intención</span><span>Contenido diario</span><span>"El precio de lanzamiento termina en X"</span><span>Alianzas activas</span></div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="p">Escala</div><div class="d">post-90 días</div></div>
+        <div>
+          <h3>Duplicar lo que funciona</h3>
+          <p>Ya tenés datos: escalás los canales rentables, el SEO empieza a rendir y subís a precio regular.</p>
+          <div class="items"><span>Escalar ads ganadores</span><span>SEO madurando</span><span>Programa de referidos</span><span>Más verticales</span><span>Precio regular</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">🎯</div>
+      <div>
+        <h4>Si tuvieras que elegir 3 cosas para arrancar</h4>
+        <p><b>1)</b> El caso PLUR en video + build in public en X (confianza, gratis). <b>2)</b> Meta Ads click-to-WhatsApp por 1–2 verticales (clientes ya). <b>3)</b> Una landing afilada por vertical con la prueba gratis. El resto se suma sobre esa base.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Plan de marketing y crecimiento de Vatuta · julio 2026. Presupuestos y ritmos son de referencia; se calibran con los datos reales de las primeras campañas.</div>
+    <div class="srcs">
+      <a href="https://www.lanacion.com.ar/economia/negocios/el-ranking-de-los-sectores-con-mas-futuro-y-los-que-deberan-reinventarse-nid03072026/">Sectores PyME 2026 · La Nación</a>
+      <a href="https://delegup.com/estado-pymes-argentinas-2026/">Estado PyMEs 2026</a>
+    </div>
+  </div>
+</footer>
+
+</body></html>

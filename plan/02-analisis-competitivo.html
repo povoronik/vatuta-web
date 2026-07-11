@@ -1,0 +1,484 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">
+<title>Vatuta · Análisis competitivo + qué reusar de PLUR</title>
+<style>
+  :root{
+    --bg:#F1F0EC; --surface:#FBFAF7; --surface-2:#F6F4EF;
+    --ink:#1A1A16; --muted:#6B695F; --faint:#949186;
+    --line:#E2DFD6; --line-strong:#CFCBBF;
+    --accent:#A96E15; --accent-ink:#6E4708; --accent-soft:#F1E4C8;
+    --good:#2E7A52; --good-soft:#E1F0E6;
+    --warn:#A96E15; --warn-soft:#F5E9CC;
+    --crit:#A93B33; --crit-soft:#F6E1DE;
+    --blue:#345E8C; --blue-soft:#E3ECF5;
+    --shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);
+    --maxw:1120px; --read:70ch;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0F1116; --surface:#171A21; --surface-2:#1C2028;
+      --ink:#ECEAE1; --muted:#9C998E; --faint:#75726A;
+      --line:#262A33; --line-strong:#333844;
+      --accent:#E0A93C; --accent-ink:#F0CE86; --accent-soft:#241D0F;
+      --good:#5BC08A; --good-soft:#132419;
+      --warn:#E0A93C; --warn-soft:#241D0F;
+      --crit:#E58B82; --crit-soft:#2A1614;
+      --blue:#7CA6D8; --blue-soft:#14202E;
+      --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="light"]{--bg:#F1F0EC;--surface:#FBFAF7;--surface-2:#F6F4EF;--ink:#1A1A16;--muted:#6B695F;--faint:#949186;--line:#E2DFD6;--line-strong:#CFCBBF;--accent:#A96E15;--accent-ink:#6E4708;--accent-soft:#F1E4C8;--good:#2E7A52;--good-soft:#E1F0E6;--warn:#A96E15;--warn-soft:#F5E9CC;--crit:#A93B33;--crit-soft:#F6E1DE;--blue:#345E8C;--blue-soft:#E3ECF5;--shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);}
+  :root[data-theme="dark"]{--bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;--line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;--good:#5BC08A;--good-soft:#132419;--warn:#E0A93C;--warn-soft:#241D0F;--crit:#E58B82;--crit-soft:#2A1614;--blue:#7CA6D8;--blue-soft:#14202E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}*{animation:none!important;transition:none!important;}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.14;text-wrap:balance;margin:0;letter-spacing:-.01em;}
+  p{margin:0 0 .9em;}
+  a{color:var(--accent-ink);text-underline-offset:3px;}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line);}
+  .bar .row{display:flex;align-items:center;gap:20px;height:58px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:17px;}
+  .mark{width:29px;height:29px;border-radius:8px;background:linear-gradient(150deg,var(--accent),var(--accent-ink));color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:17px;}
+  nav.top{margin-left:auto;display:flex;gap:20px;}
+  nav.top a{font-size:13.5px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;}
+  nav.top a:hover{color:var(--ink);}
+  @media(max-width:780px){nav.top{display:none;}}
+
+  .hero{padding:64px 0 34px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 55% at 90% 0%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 60%);}
+  .hero .inner{position:relative;animation:rise .6s ease both;}
+  @keyframes rise{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:none;}}
+  .hero h1{font-size:clamp(2.3rem,5vw,3.7rem);margin:.3em 0 .3em;max-width:18ch;}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:62ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:6px 13px;box-shadow:var(--shadow);}
+  .chip b{color:var(--accent-ink);font-weight:600;}
+
+  section{padding:48px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .sec-head .no{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:600;padding-top:4px;}
+  h2{font-size:clamp(1.6rem,2.9vw,2.2rem);}
+  .sec-sub{color:var(--muted);max-width:var(--read);margin-top:10px;font-size:1.03rem;}
+  .group-label{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:26px 0 12px;display:flex;align-items:center;gap:10px;}
+  .group-label::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  .grid{display:grid;gap:15px;}
+  .g2{grid-template-columns:repeat(2,1fr);}
+  .g3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:900px){.g3{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.g2,.g3{grid-template-columns:1fr;}}
+
+  .co{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:17px 18px;box-shadow:var(--shadow);}
+  .co .top{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:3px;}
+  .co h3{font-size:1.12rem;}
+  .co .flag{font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.03em;white-space:nowrap;}
+  .co .what{font-size:.9rem;color:var(--muted);margin:0 0 9px;}
+  .co .diff{font-size:.9rem;margin:9px 0 0;padding-top:9px;border-top:1px solid var(--line);}
+  .co .diff b{color:var(--accent-ink);}
+  .co .price{font-family:var(--mono);font-size:11.5px;color:var(--ink);background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:6px 9px;margin-top:9px;display:block;}
+
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:18px 20px;box-shadow:var(--shadow);}
+  .card h3{font-size:1.05rem;margin-bottom:9px;display:flex;align-items:center;gap:9px;}
+  .card h3 .ico{width:26px;height:26px;border-radius:7px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-size:14px;flex-shrink:0;}
+  .card ul{margin:0;padding-left:1.05em;}
+  .card li{font-size:.92rem;margin-bottom:6px;}
+  .card li::marker{color:var(--accent);}
+  .card li b{color:var(--ink);}
+
+  /* matrix */
+  .matrix{margin-top:22px;background:var(--surface);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow);overflow-x:auto;}
+  .matrix table{width:100%;border-collapse:collapse;min-width:640px;}
+  .matrix th{text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);padding:14px 16px 10px;border-bottom:1px solid var(--line-strong);}
+  .matrix td{padding:10px 16px;border-bottom:1px solid var(--line);font-size:.92rem;vertical-align:middle;}
+  .matrix tr:last-child td{border-bottom:none;}
+  .matrix td.cap{font-weight:600;color:var(--ink);}
+  .matrix td.ref{color:var(--muted);font-size:.86rem;}
+  .subrow td{background:var(--surface-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;padding:8px 16px;}
+  .pill{font-family:var(--mono);font-size:11px;padding:2px 10px;border-radius:20px;font-weight:600;white-space:nowrap;display:inline-block;}
+  .p-yes{background:var(--good-soft);color:var(--good);}
+  .p-part{background:var(--warn-soft);color:var(--warn);}
+  .p-no{background:var(--crit-soft);color:var(--crit);}
+
+  .callout{border-radius:13px;padding:18px 20px;border:1px solid var(--line);background:var(--surface-2);display:flex;gap:14px;align-items:flex-start;margin-top:20px;}
+  .callout .ic{flex-shrink:0;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);}
+  .callout.good{border-color:color-mix(in srgb,var(--good) 40%,var(--line));}
+  .callout.good .ic{background:var(--good-soft);}
+  .callout h4{font-family:var(--sans);font-weight:700;font-size:14px;margin:0 0 5px;color:var(--ink);}
+  .callout p{margin:0;font-size:.94rem;color:var(--muted);}
+  .callout p+p{margin-top:7px;}
+
+  .verdict{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:linear-gradient(150deg,var(--surface),var(--surface-2));border:1px solid var(--line-strong);border-radius:16px;padding:24px 26px;margin-top:22px;box-shadow:var(--shadow);}
+  .verdict .big{font-family:var(--serif);font-size:3.4rem;color:var(--accent-ink);line-height:1;font-variant-numeric:tabular-nums;}
+  .verdict .big small{display:block;font-size:.8rem;color:var(--muted);font-family:var(--mono);letter-spacing:.05em;margin-top:6px;text-transform:uppercase;}
+  @media(max-width:520px){.verdict{grid-template-columns:1fr;text-align:center;}}
+
+  .split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-top:22px;}
+  @media(max-width:820px){.split{grid-template-columns:1fr;}}
+  .col{border-radius:13px;padding:17px 19px;border:1px solid var(--line);background:var(--surface);}
+  .col.reuse{border-top:3px solid var(--good);}
+  .col.spec{border-top:3px solid var(--warn);}
+  .col.miss{border-top:3px solid var(--crit);}
+  .col h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:11px;}
+  .col.reuse h4{color:var(--good);} .col.spec h4{color:var(--warn);} .col.miss h4{color:var(--crit);}
+  .col ul{margin:0;padding-left:1em;} .col li{font-size:.9rem;margin-bottom:6px;color:var(--muted);}
+  .col li b{color:var(--ink);}
+
+  .decide{background:var(--surface);border:1px solid var(--line-strong);border-radius:16px;padding:26px;margin-top:22px;box-shadow:var(--shadow);}
+  .decide .q{padding:14px 0;border-top:1px solid var(--line);}
+  .decide .q:first-of-type{border-top:none;padding-top:4px;}
+  .decide .q .k{font-family:var(--mono);font-size:11px;color:var(--accent-ink);letter-spacing:.06em;text-transform:uppercase;}
+  .decide .q b{display:block;font-size:1.02rem;margin:3px 0 4px;color:var(--ink);font-family:var(--serif);font-weight:600;}
+  .decide .q span{color:var(--muted);font-size:.92rem;}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 56px;color:var(--faint);font-size:12.5px;}
+  footer a{color:var(--muted);}
+  .srcs{display:flex;flex-wrap:wrap;gap:5px 16px;margin-top:10px;}
+  h2,h3{page-break-after:avoid;}
+</style>
+
+<header class="bar">
+  <div class="wrap row">
+    <div class="logo"><span class="mark">V</span>Vatuta · Análisis</div>
+    <nav class="top">
+      <a href="#competidores">Competidores</a>
+      <a href="#suma">Qué suma</a>
+      <a href="#matriz">Matriz</a>
+      <a href="#repo">Repo PLUR</a>
+      <a href="#definir">Definir</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap inner">
+    <div class="eyebrow">Inteligencia previa · antes del plan</div>
+    <h1>Qué hacen los que ya juegan, y qué de PLUR nos sirve.</h1>
+    <p class="lede">Análisis de 10 competidores (globales y de LatAm/Argentina), la lista completa de lo que suma a un negocio así, y el veredicto de cuánto de tu repo se puede reusar. El insumo para <strong>definir juntos</strong> antes de armar el plan.</p>
+    <div class="chips">
+      <span class="chip"><b>10</b> competidores analizados</span>
+      <span class="chip"><b>~24</b> capacidades relevadas</span>
+      <span class="chip"><b>Repo PLUR</b> · 44 módulos auditados</span>
+    </div>
+  </div>
+</div>
+
+<!-- 01 COMPETIDORES -->
+<section id="competidores">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><div><h2>Los 10 competidores</h2></div></div>
+    <p class="sec-sub">Divididos en dos ligas: los de tu perfil (PyME/LatAm, precio accesible) — tus rivales directos — y los líderes globales, que marcan el estándar de producto. Arriba de todos, la referencia enterprise.</p>
+
+    <div class="group-label">Tu liga · PyME y LatAm/Argentina (rivales directos)</div>
+    <div class="grid g3">
+      <div class="co">
+        <div class="top"><h3>Whaticket</h3><span class="flag">🌎 LatAm</span></div>
+        <p class="what">CRM + multiagente + bot para WhatsApp/FB/IG. Apunta directo a comercios y PyMEs.</p>
+        <span class="price">desde US$49/mes · 3 agentes · –20% anual</span>
+        <p class="diff"><b>Diferencial:</b> multiagente ilimitado sobre una línea, FB/IG gratis e ilimitado, <b>soporte en español</b>. El más parecido a vos.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Leadsales</h3><span class="flag">🇲🇽 México</span></div>
+        <p class="what">CRM para WhatsApp/FB/IG con embudos de venta. Salió en Shark Tank México.</p>
+        <span class="price">desde US$97/mes · cobra en pesos MXN</span>
+        <p class="diff"><b>Diferencial:</b> el <b>embudo/pipeline de ventas por chat</b> súper claro. Vende "vendé más por WhatsApp", no "atención".</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Cliengo</h3><span class="flag">🇦🇷 Argentina</span></div>
+        <p class="what">Chatbot con IA + CRM para captar leads en la web y redes.</p>
+        <span class="price">US$24–300/mes · trial 14 días sin tarjeta</span>
+        <p class="diff"><b>Diferencial:</b> el mejor en convertir <b>tráfico web → lead</b>. Argentino, español, precio PyME.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Botmaker</h3><span class="flag">🇦🇷 Argentina</span></div>
+        <p class="what">Plataforma conversacional con IA, +20 canales. BSP oficial de WhatsApp. PyME→enterprise.</p>
+        <span class="price">gratis ~300 sesiones · US$150–499/mes</span>
+        <p class="diff"><b>Diferencial:</b> robustez y ser <b>Proveedor Oficial de WhatsApp</b>. Argentino con presencia regional fuerte.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Wati</h3><span class="flag">🌍 WhatsApp-first</span></div>
+        <p class="what">Inbox + broadcast + chatbot sobre WhatsApp API. Fuerte en mercados emergentes.</p>
+        <span class="price">US$59 / 119 / 279 /mes · markup ~20% Meta</span>
+        <p class="diff"><b>Diferencial:</b> onboarding de WhatsApp simple + ayuda con el "green tick" y <b>broadcast robusto</b>.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Tidio</h3><span class="flag">🌍 PyME</span></div>
+        <p class="what">Chat en vivo + bot con IA (Lyro) para PyME y e-commerce. Muy self-service.</p>
+        <span class="price">plan gratis · Lyro IA desde US$39/mes</span>
+        <p class="diff"><b>Diferencial:</b> <b>Lyro resuelve ~67% solo</b> y multilenguaje automático; arranca fácil. Buen precio/potencia.</p>
+      </div>
+    </div>
+
+    <div class="group-label">Estándar global · marcan la vara del producto</div>
+    <div class="grid g3">
+      <div class="co">
+        <div class="top"><h3>ManyChat</h3><span class="flag">🌍 social/e-comm</span></div>
+        <p class="what">Automatización de mensajería (fuerte en Instagram/Messenger).</p>
+        <span class="price">gratis 25 · Pro US$29 · IA +US$29</span>
+        <p class="diff"><b>Diferencial:</b> rey del <b>comment-to-DM</b> en IG y UI para no técnicos.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Respond.io</h3><span class="flag">🌍 equipos</span></div>
+        <p class="what">Inbox omnicanal + automatización avanzada para equipos de venta/soporte.</p>
+        <span class="price">US$79–279/mes · por contactos + usuarios</span>
+        <p class="diff"><b>Diferencial:</b> motor de <b>Workflows</b> potentísimo y gestión multiagente "de empresa".</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Landbot</h3><span class="flag">🌍 lead-gen</span></div>
+        <p class="what">Constructor visual de chatbots/AI Agents para web y WhatsApp.</p>
+        <span class="price">gratis 100 chats · ~€32–80/mes</span>
+        <p class="diff"><b>Diferencial:</b> la <b>mejor UX de diseño de flujos</b> (drag-and-drop tipo flowchart).</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Intercom · Fin</h3><span class="flag">🌍 soporte</span></div>
+        <p class="what">Help desk líder con la mejor IA de resolución autónoma del mercado.</p>
+        <span class="price">asiento US$29–132 + Fin US$0,99 por resolución</span>
+        <p class="diff"><b>Diferencial:</b> <b>pagás solo cuando la IA resuelve</b>. Modelo de precios que marca tendencia.</p>
+      </div>
+      <div class="co">
+        <div class="top"><h3>Aivo · Yalo</h3><span class="flag">🇦🇷🇲🇽 enterprise</span></div>
+        <p class="what">IA conversacional y comercio por WhatsApp a gran escala (Nestlé, Coca-Cola…).</p>
+        <span class="price">precio no público · a medida</span>
+        <p class="diff"><b>Referencia de "techo":</b> fuera de tu segmento, pero muestran hacia dónde crece el mercado.</p>
+      </div>
+      <div class="co" style="border-style:dashed;background:var(--surface-2);">
+        <div class="top"><h3>También miramos</h3><span class="flag">referencias</span></div>
+        <p class="what">Trengo (bandeja omnicanal EU), Zoko (WhatsApp+Shopify, recupero de carrito), Chatfuel.</p>
+        <p class="diff" style="color:var(--muted)">Aportan ideas puntuales: recupero de carrito, resumen con IA, análisis de sentimiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 QUÉ SUMA -->
+<section id="suma">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><div><h2>Todo lo que suma a un negocio así</h2></div></div>
+    <p class="sec-sub">La lista destilada de los 10 competidores: las capacidades que, juntas, hacen un producto competitivo. Agrupadas por área. (En la sección 03 cruzo cada una con lo que PLUR ya tiene.)</p>
+
+    <div class="grid g3" style="margin-top:24px;">
+      <div class="card"><h3><span class="ico">📡</span>Canales y conexión</h3><ul>
+        <li><b>WhatsApp API</b> con alta simple (green tick, Embedded Signup)</li>
+        <li>Instagram, Facebook, <b>chat web</b>, y opcional SMS/email/TikTok</li>
+        <li>Multi-número / multi-cuenta</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">📥</span>Bandeja multiagente</h3><ul>
+        <li>Un <b>inbox unificado</b>, varios agentes sobre un número</li>
+        <li>Asignación, ruteo, notas internas</li>
+        <li><b>Handover bot ↔ humano</b> · app móvil</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">🤖</span>IA que resuelve</h3><ul>
+        <li>Responde sola, entiende intención (% de <b>deflection</b>)</li>
+        <li>Entrenada con <b>tu base de conocimiento</b>, multilenguaje</li>
+        <li><b>Copilot</b> (respuestas sugeridas al agente)</li>
+        <li>Acciones, no solo FAQ (crea lead, cotiza, estado de pedido)</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">🧩</span>Constructor sin código</h3><ul>
+        <li><b>Flow builder visual</b> (drag-and-drop)</li>
+        <li>Botones, listas, formularios nativos</li>
+        <li><b>Plantillas por vertical</b> listas para usar</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">🎯</span>CRM y embudo</h3><ul>
+        <li><b>Pipeline de ventas</b> por etapas, seguimiento</li>
+        <li>Historial, etiquetas, captura de leads desde la web</li>
+        <li>Ruteo de leads a la persona/sucursal correcta</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">📣</span>Campañas / broadcast</h3><ul>
+        <li>Envíos masivos con <b>plantillas de WhatsApp</b></li>
+        <li>Secuencias, recupero de carrito</li>
+        <li><b>Comment-to-DM</b> en redes</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">📊</span>Analytics y valor</h3><ul>
+        <li>Métricas de conversaciones, resolución, conversión</li>
+        <li><b>Reporte de valor</b> mostrado al cliente (retención)</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">🔌</span>Integraciones y comercio</h3><ul>
+        <li>E-commerce (<b>Tiendanube</b>/Shopify), Sheets, Zapier, API</li>
+        <li>Catálogo, pedidos y <b>pago por chat</b></li>
+        <li>Logística / envíos</li>
+      </ul></div>
+      <div class="card"><h3><span class="ico">🏢</span>Plataforma / negocio</h3><ul>
+        <li>Planes (contactos/conversaciones/agentes), <b>free trial</b></li>
+        <li>Roles, seguridad, <b>white-label</b>, i18n</li>
+        <li><b>Ventaja local:</b> español, pesos + Mercado Pago, factura AFIP, soporte acá</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 MATRIZ -->
+<section id="matriz">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><div><h2>La matriz: qué de esto ya tenés en PLUR</h2></div></div>
+    <p class="sec-sub">El cruce clave. Cada capacidad × si ya está en tu repo (<span class="pill p-yes">Listo</span> <span class="pill p-part">Parcial</span> <span class="pill p-no">Falta</span>) × el competidor que la hace referencia. Acá se ve la historia completa de un vistazo.</p>
+
+    <div class="matrix">
+      <table>
+        <tr><th>Capacidad</th><th>En el repo PLUR</th><th>Referente</th></tr>
+        <tr class="subrow"><td colspan="3">Motor conversacional (tu fortaleza)</td></tr>
+        <tr><td class="cap">Canales WhatsApp / IG / FB / web</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Whaticket, Botmaker</td></tr>
+        <tr><td class="cap">IA que responde sola + function calling</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Tidio (Lyro), Intercom (Fin)</td></tr>
+        <tr><td class="cap">Bandeja unificada + handover bot↔humano</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Respond.io, Trengo</td></tr>
+        <tr><td class="cap">Multiagente (varios agentes, asignación)</td><td><span class="pill p-part">Parcial</span></td><td class="ref">Whaticket, Leadsales</td></tr>
+        <tr><td class="cap">CRM de leads + embudo por etapas</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Leadsales, Cliengo</td></tr>
+        <tr><td class="cap">Presupuestos / cotización con PDF</td><td><span class="pill p-yes">Listo</span></td><td class="ref">— casi nadie lo tiene ⭐</td></tr>
+        <tr><td class="cap">Envíos / logística (Andreani)</td><td><span class="pill p-yes">Listo</span></td><td class="ref">— diferencial ⭐</td></tr>
+        <tr><td class="cap">Captura de leads desde la web (widget)</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Cliengo</td></tr>
+        <tr class="subrow"><td colspan="3">Features de producto moderno (a construir)</td></tr>
+        <tr><td class="cap">Constructor de bot visual (flow builder)</td><td><span class="pill p-no">Falta</span></td><td class="ref">Landbot, ManyChat</td></tr>
+        <tr><td class="cap">IA con base de conocimiento por cliente</td><td><span class="pill p-no">Falta</span></td><td class="ref">Intercom (Fin), Tidio</td></tr>
+        <tr><td class="cap">Copilot (respuestas sugeridas al agente)</td><td><span class="pill p-no">Falta</span></td><td class="ref">Intercom, Tidio</td></tr>
+        <tr><td class="cap">Campañas / broadcast masivo</td><td><span class="pill p-part">Parcial</span></td><td class="ref">Wati, ManyChat</td></tr>
+        <tr><td class="cap">Plantillas por vertical listas</td><td><span class="pill p-no">Falta</span></td><td class="ref">ManyChat</td></tr>
+        <tr><td class="cap">Integración e-commerce (Tiendanube/Shopify)</td><td><span class="pill p-no">Falta</span></td><td class="ref">Zoko, Tidio</td></tr>
+        <tr><td class="cap">Analytics / reporte de valor al cliente</td><td><span class="pill p-part">Parcial</span></td><td class="ref">Intercom</td></tr>
+        <tr class="subrow"><td colspan="3">Capa de plataforma SaaS (el gran faltante)</td></tr>
+        <tr><td class="cap">Multi-tenant (aislamiento por cliente)</td><td><span class="pill p-no">Falta</span></td><td class="ref">todos</td></tr>
+        <tr><td class="cap">Login propio usuario/contraseña</td><td><span class="pill p-no">Falta</span></td><td class="ref">todos</td></tr>
+        <tr><td class="cap">Alta de canales por cliente (Embedded Signup)</td><td><span class="pill p-no">Falta</span></td><td class="ref">Wati, Botmaker</td></tr>
+        <tr><td class="cap">Billing / suscripciones (Mercado Pago)</td><td><span class="pill p-no">Falta</span></td><td class="ref">todos</td></tr>
+        <tr><td class="cap">Onboarding self-service + panel super-admin</td><td><span class="pill p-no">Falta</span></td><td class="ref">Tidio, ManyChat</td></tr>
+        <tr class="subrow"><td colspan="3">Cimientos "de empresa" (ya resueltos)</td></tr>
+        <tr><td class="cap">Seguridad (CSP, firma HMAC, deny-by-default)</td><td><span class="pill p-yes">Listo</span></td><td class="ref">— base pro ⭐</td></tr>
+        <tr><td class="cap">Tests + CI + "degradar sin romper"</td><td><span class="pill p-yes">Listo</span></td><td class="ref">— base pro ⭐</td></tr>
+        <tr><td class="cap">PWA instalable + notificaciones push</td><td><span class="pill p-yes">Listo</span></td><td class="ref">Tidio (móvil)</td></tr>
+      </table>
+    </div>
+
+    <div class="callout good">
+      <div class="ic">⭐</div>
+      <div>
+        <h4>Lo que la matriz revela</h4>
+        <p>Tenés el <b>motor conversacional completo</b> y hasta dos diferenciales que casi ningún competidor trae — <b>presupuestos con PDF</b> y <b>logística de envíos</b> — más cimientos de seguridad y tests de nivel empresa. Lo que falta es la <b>capa de plataforma SaaS</b> (multi-tenant, login, billing, alta self-service) y algunas features de UX moderna (flow builder visual, base de conocimiento, copilot). Es decir: te falta el "traje de SaaS", no el músculo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 REPO -->
+<section id="repo">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">04</span><div><h2>Qué se le puede sacar al repo de PLUR</h2></div></div>
+    <p class="sec-sub">Auditoría a fondo de los 44 módulos del backend, frontend, base y tests. El veredicto en un número:</p>
+
+    <div class="verdict">
+      <div class="big">~45%<small>del núcleo SaaS ya construido</small></div>
+      <div>
+        <p style="margin:0;">Y es <b>la mitad más difícil y valiosa</b>: motor omnicanal con IA, bandeja, presupuestos/PDF, CRM, logística, seguridad y disciplina de tests. Todo single-tenant pero muy bien modularizado.</p>
+        <p style="margin:8px 0 0;color:var(--muted);font-size:.92rem;">Un dato de oro para el multi-tenant: el código <b>ya extrae <code>phone_number_id</code> y <code>pageId</code></b> de cada mensaje entrante — la pieza clave para enrutar por cliente ya está; solo falta la tabla que mapea ese id → tenant.</p>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="col reuse">
+        <h4>✓ Reusable · el núcleo</h4>
+        <ul>
+          <li><b>bot.js</b> — orquestador omnicanal con IA (1.066 líneas)</li>
+          <li><b>gemini/agente</b> — IA con function calling</li>
+          <li><b>whatsapp/messenger/meta</b> — canales + firma HMAC</li>
+          <li><b>bandeja/conversacion/medios</b> — inbox + media</li>
+          <li><b>leads</b> — CRM + embudo</li>
+          <li><b>presupuesto·pdf, envios</b> — motor (los diferenciales)</li>
+          <li><b>seguridad, push, email, tests, CI</b></li>
+        </ul>
+      </div>
+      <div class="col spec">
+        <h4>◐ Específico de PLUR · generalizar</h4>
+        <ul>
+          <li><b>restauracion.js</b> — máquina de estados de una vertical (527 líneas) → plantilla</li>
+          <li><b>ruteo.js</b> — Clara/Ciudadela/Paso del Rey cableado → config por cliente</li>
+          <li><b>representantes/padron</b> — MLM de PLUR → módulo opcional</li>
+          <li>Catálogo de restauración/Glasé → datos por tenant</li>
+          <li>Prompt con "plur.ar/glase.ar" → por tenant</li>
+        </ul>
+      </div>
+      <div class="col miss">
+        <h4>✗ Falta para SaaS · construir</h4>
+        <ul>
+          <li><b>Multi-tenancy</b>: <code>tenant_id</code> en cada tabla y query (hoy: 0 referencias)</li>
+          <li><b>Login propio</b>: reemplazar Cloudflare Access por usuario/contraseña multi-cliente</li>
+          <li><b>Alta de canales por cliente</b>: Embedded Signup + credenciales por tenant (hoy: 1 set global)</li>
+          <li><b>Billing + onboarding + super-admin</b>: no existe nada</li>
+          <li><b>Generalizar</b> lo específico de PLUR</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="ic">🔑</div>
+      <div>
+        <h4>El detalle técnico que abarata todo</h4>
+        <p>Hoy <b>todas las credenciales son globales del Worker</b> (un WhatsApp, un Page, una app de Meta, en variables de entorno). Para multi-cliente hay que moverlas a una tabla <code>tenant_credenciales</code> en D1 y leerlas por request. Es trabajo acotado y mecánico — no una reescritura. Y <code>permisos.js</code> (deny-by-default) se reusa casi tal cual cambiando el eje "red de PLUR" por "tenant".</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 DEFINIR -->
+<section id="definir">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">05</span><div><h2>Propuesta para definir juntos</h2></div></div>
+    <p class="sec-sub">Con todo lo anterior, esta es mi propuesta de <strong>qué entra en la v1</strong> (para salir a vender rápido apalancando lo que ya tenés) y qué queda para después. Es un punto de partida para que ajustemos antes de armar el plan.</p>
+
+    <div class="grid g2" style="margin-top:22px;">
+      <div class="card" style="border-top:3px solid var(--good);">
+        <h3 style="color:var(--good)">Entra en la v1 (apalancás lo construido)</h3>
+        <ul>
+          <li>Bot omnicanal con IA (WhatsApp + IG + FB + web) <b>multi-tenant</b></li>
+          <li>Bandeja unificada + handover</li>
+          <li>CRM de leads + embudo + captura web</li>
+          <li><b>Presupuestos con PDF</b> (tu diferencial estrella)</li>
+          <li>Login propio + alta self-service + <b>primer mes gratis</b></li>
+          <li>Billing con Mercado Pago · panel super-admin (tu tablero)</li>
+          <li>1–2 <b>plantillas de vertical</b> para arrancar</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:3px solid var(--faint);">
+        <h3 style="color:var(--muted)">Queda para v2+ (cuando haya clientes)</h3>
+        <ul>
+          <li>Flow builder visual (drag-and-drop)</li>
+          <li>IA con base de conocimiento por cliente + copilot</li>
+          <li>Campañas / broadcast masivo avanzado</li>
+          <li>Integración e-commerce (Tiendanube/Shopify)</li>
+          <li>White-label y multi-idioma</li>
+          <li>DB-por-tenant para clientes grandes</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="decide">
+      <p style="margin:0 0 6px;font-family:var(--serif);font-size:1.15rem;color:var(--ink);">Las 4 decisiones que tenemos que cerrar antes del plan</p>
+      <div class="q"><span class="k">Decisión 1 · Posicionamiento</span><b>¿"Atención" o "ventas"?</b><span>Whaticket vende atención multiagente; Leadsales vende "vendé más por WhatsApp". El mensaje cambia el producto. Mi recomendación: <b>ventas</b> (embudo + presupuestos es tu fuerte).</span></div>
+      <div class="q"><span class="k">Decisión 2 · Diferencial central</span><b>¿Cuál es tu "una cosa"?</b><span>Tenés dos que casi nadie tiene: <b>presupuestos con PDF</b> y <b>logística</b>. Propongo apoyar todo el marketing en "el bot que cotiza y cierra la venta, no solo responde".</span></div>
+      <div class="q"><span class="k">Decisión 3 · Alcance v1</span><b>¿Salimos con el mínimo o con más?</b><span>Mi recomendación: la v1 de arriba (motor + capa SaaS), sin flow builder visual todavía. Vender antes, no construir de más.</span></div>
+      <div class="q"><span class="k">Decisión 4 · Verticales faro</span><b>¿Con qué 1–2 rubros arrancamos?</b><span>El producto es horizontal, pero conviene un mensaje afilado. ¿Los que ya conocés (venta directa, restauración/gastronomía), u otro?</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Análisis preparado para definir la estrategia de Vatuta · julio 2026. Datos de competidores tomados de sus sitios oficiales y reviews (G2/Capterra); precios de referencia, sujetos a cambio. Auditoría del repo <code>povoronik/plur-app-provisorio</code> sobre el árbol real.</div>
+    <div class="srcs">
+      <a href="https://whaticket.com/">Whaticket</a>
+      <a href="https://leadsales.io/en/pricing/">Leadsales</a>
+      <a href="https://www.cliengo.com/pricing">Cliengo</a>
+      <a href="https://botmaker.com/es/precios">Botmaker</a>
+      <a href="https://www.wati.io/pricing/">Wati</a>
+      <a href="https://www.tidio.com/pricing/">Tidio</a>
+      <a href="https://manychat.com/pricing">ManyChat</a>
+      <a href="https://respond.io/pricing">Respond.io</a>
+      <a href="https://landbot.io/pricing">Landbot</a>
+      <a href="https://fin.ai/pricing">Intercom · Fin</a>
+    </div>
+  </div>
+</footer>
+
+</body></html>

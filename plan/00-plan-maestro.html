@@ -1,0 +1,313 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">
+<title>Vatuta · Plan de Acción Maestro</title>
+<style>
+  :root{
+    --bg:#F1F0EC;--surface:#FBFAF7;--surface-2:#F6F4EF;--ink:#1A1A16;--muted:#6B695F;--faint:#949186;
+    --line:#E2DFD6;--line-strong:#CFCBBF;--accent:#A96E15;--accent-ink:#6E4708;--accent-soft:#F1E4C8;
+    --good:#2E7A52;--good-soft:#E1F0E6;--crit:#A93B33;--crit-soft:#F6E1DE;--blue:#345E8C;--blue-soft:#E3ECF5;
+    --shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);
+    --maxw:1080px;--read:72ch;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{--bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;--line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;--good:#5BC08A;--good-soft:#132419;--crit:#E58B82;--crit-soft:#2A1614;--blue:#7CA6D8;--blue-soft:#14202E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);}}
+  :root[data-theme="light"]{--bg:#F1F0EC;--surface:#FBFAF7;--surface-2:#F6F4EF;--ink:#1A1A16;--muted:#6B695F;--faint:#949186;--line:#E2DFD6;--line-strong:#CFCBBF;--accent:#A96E15;--accent-ink:#6E4708;--accent-soft:#F1E4C8;--good:#2E7A52;--good-soft:#E1F0E6;--crit:#A93B33;--crit-soft:#F6E1DE;--blue:#345E8C;--blue-soft:#E3ECF5;--shadow:0 1px 2px rgba(26,26,22,.05),0 8px 24px -12px rgba(26,26,22,.14);}
+  :root[data-theme="dark"]{--bg:#0F1116;--surface:#171A21;--surface-2:#1C2028;--ink:#ECEAE1;--muted:#9C998E;--faint:#75726A;--line:#262A33;--line-strong:#333844;--accent:#E0A93C;--accent-ink:#F0CE86;--accent-soft:#241D0F;--good:#5BC08A;--good-soft:#132419;--crit:#E58B82;--crit-soft:#2A1614;--blue:#7CA6D8;--blue-soft:#14202E;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px -14px rgba(0,0,0,.6);}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.14;text-wrap:balance;margin:0;letter-spacing:-.01em;}
+  p{margin:0 0 .85em;}
+  a{color:var(--accent-ink);text-underline-offset:3px;}
+  code{font-family:var(--mono);font-size:.84em;background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:.5px 5px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  header.bar{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line);}
+  .bar .row{display:flex;align-items:center;gap:18px;height:56px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em;font-size:16px;}
+  .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(150deg,var(--accent),var(--accent-ink));color:#fff;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:16px;}
+  nav.top{margin-left:auto;display:flex;gap:15px;}
+  nav.top a{font-size:13px;color:var(--muted);text-decoration:none;font-weight:500;white-space:nowrap;}
+  nav.top a:hover{color:var(--ink);}
+  @media(max-width:920px){nav.top{display:none;}}
+
+  .hero{padding:60px 0 30px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(55% 55% at 90% 0%,color-mix(in srgb,var(--accent) 15%,transparent),transparent 60%);}
+  .hero .inner{position:relative;}
+  .hero h1{font-size:clamp(2.4rem,5vw,3.7rem);margin:.3em 0 .3em;max-width:16ch;}
+  .hero .lede{font-size:clamp(1.02rem,1.5vw,1.22rem);color:var(--muted);max-width:60ch;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:30px;padding:6px 13px;box-shadow:var(--shadow);}
+  .chip b{color:var(--accent-ink);font-weight:600;}
+
+  section{padding:44px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;}
+  .sec-head .no{font-family:var(--mono);font-size:13px;color:var(--accent-ink);font-weight:600;padding-top:4px;}
+  h2{font-size:clamp(1.6rem,2.9vw,2.15rem);}
+  .sec-sub{color:var(--muted);max-width:var(--read);margin-top:8px;font-size:1.02rem;}
+
+  .tblwrap{overflow-x:auto;margin-top:20px;}
+  table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:600px;}
+  th{background:var(--accent);color:#fff;text-align:left;padding:9px 13px;font-family:var(--mono);font-size:10.5px;letter-spacing:.03em;text-transform:uppercase;}
+  td{padding:9px 13px;border-bottom:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:var(--surface-2);}
+  td.a{font-weight:700;color:var(--ink);white-space:nowrap;font-family:var(--sans);}
+  td b{color:var(--ink);} td .mono{font-family:var(--mono);font-size:11.5px;color:var(--accent-ink);}
+
+  .grid{display:grid;gap:14px;margin-top:20px;}
+  .g2{grid-template-columns:repeat(2,1fr);} .g3{grid-template-columns:repeat(3,1fr);}
+  @media(max-width:880px){.g3{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.g2,.g3{grid-template-columns:1fr;}}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:13px;padding:17px 19px;box-shadow:var(--shadow);}
+  .card h3{font-size:1.05rem;margin-bottom:8px;display:flex;align-items:center;gap:9px;}
+  .card h3 .ico{width:26px;height:26px;border-radius:7px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;font-size:13px;flex-shrink:0;}
+  .card ul{margin:0;padding-left:1.05em;} .card li{font-size:.9rem;margin-bottom:5px;} .card li::marker{color:var(--accent);} .card li b{color:var(--ink);}
+  .card p{font-size:.92rem;color:var(--muted);margin:0;}
+
+  .verdict{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:linear-gradient(150deg,var(--surface),var(--surface-2));border:1px solid var(--line-strong);border-radius:16px;padding:22px 26px;margin-top:20px;box-shadow:var(--shadow);}
+  .verdict .big{font-family:var(--serif);font-size:3.2rem;color:var(--accent-ink);line-height:1;}
+  .verdict .big small{display:block;font-size:.78rem;color:var(--muted);font-family:var(--mono);letter-spacing:.05em;margin-top:6px;text-transform:uppercase;}
+  @media(max-width:520px){.verdict{grid-template-columns:1fr;text-align:center;}}
+
+  .split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:16px;}
+  @media(max-width:820px){.split{grid-template-columns:1fr;}}
+  .col{border-radius:12px;padding:16px 18px;border:1px solid var(--line);background:var(--surface);}
+  .col.reuse{border-top:3px solid var(--good);} .col.spec{border-top:3px solid var(--accent);} .col.miss{border-top:3px solid var(--crit);}
+  .col h4{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
+  .col.reuse h4{color:var(--good);} .col.spec h4{color:var(--accent-ink);} .col.miss h4{color:var(--crit);}
+  .col ul{margin:0;padding-left:1em;} .col li{font-size:.88rem;margin-bottom:5px;color:var(--muted);} .col li b{color:var(--ink);}
+
+  /* fases */
+  .phase{display:grid;grid-template-columns:140px 1fr;gap:22px;padding:22px 0;border-top:1px solid var(--line);}
+  .phase:last-child{border-bottom:1px solid var(--line);}
+  .phase .w .n{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;}
+  .phase .w .d{font-family:var(--mono);font-size:11px;color:var(--faint);margin-top:3px;}
+  .phase .w .goal{font-size:.82rem;color:var(--muted);margin-top:8px;font-style:italic;}
+  .phase h3{font-size:1.18rem;margin-bottom:8px;}
+  .phase .items{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px;}
+  .phase .items span{font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;}
+  .phase .repo{font-family:var(--mono);font-size:11px;color:var(--muted);}
+  .phase .repo b{color:var(--accent-ink);}
+  @media(max-width:620px){.phase{grid-template-columns:1fr;gap:8px;}}
+
+  .callout{border-radius:13px;padding:17px 20px;border:1px solid var(--line);background:var(--surface-2);display:flex;gap:14px;align-items:flex-start;margin-top:20px;}
+  .callout .ic{flex-shrink:0;width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-size:17px;background:var(--accent-soft);}
+  .callout.good{border-color:color-mix(in srgb,var(--good) 40%,var(--line));} .callout.good .ic{background:var(--good-soft);}
+  .callout h4{font-family:var(--sans);font-weight:700;font-size:14px;margin:0 0 5px;color:var(--ink);}
+  .callout p{margin:0;font-size:.93rem;color:var(--muted);}
+
+  .docs{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:20px;}
+  @media(max-width:680px){.docs{grid-template-columns:1fr;}}
+  .doc{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:11px;padding:13px 15px;background:var(--surface);}
+  .doc .e{font-size:20px;}
+  .doc b{font-size:.96rem;} .doc p{margin:2px 0 0;font-size:.85rem;color:var(--muted);}
+
+  .start{background:linear-gradient(155deg,var(--surface),var(--surface-2));border:1px solid var(--line-strong);border-radius:16px;padding:26px;margin-top:20px;box-shadow:var(--shadow);}
+  .start ol{margin:16px 0 0;padding-left:0;counter-reset:s;list-style:none;}
+  .start li{position:relative;padding:12px 0 12px 44px;border-top:1px solid var(--line);}
+  .start li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:12px;width:28px;height:28px;border-radius:8px;background:var(--accent);color:#fff;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;}
+  .start li b{color:var(--ink);} .start li span{color:var(--muted);font-size:.92rem;}
+
+  footer{border-top:1px solid var(--line);padding:28px 0 56px;color:var(--faint);font-size:12.5px;}
+  h2,h3{page-break-after:avoid;} .phase,.card{page-break-inside:avoid;}
+</style>
+
+<header class="bar">
+  <div class="wrap row">
+    <div class="logo"><span class="mark">V</span>Vatuta · Plan Maestro</div>
+    <nav class="top">
+      <a href="#decisiones">Decisiones</a><a href="#arq">Arquitectura</a><a href="#repo">Repo PLUR</a><a href="#roadmap">Roadmap</a><a href="#kpis">KPIs</a><a href="#docs">Documentos</a><a href="#start">Empezar</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap inner">
+    <div class="eyebrow">Plan de acción maestro · julio 2026</div>
+    <h1>Vatuta, de la definición a la ejecución.</h1>
+    <p class="lede">El documento que junta todo: cada decisión tomada, la arquitectura, qué se reusa del repo de PLUR y el roadmap por fases para construir el SaaS. La hoja de ruta de "por dónde empiezo".</p>
+    <div class="chips">
+      <span class="chip"><b>Producto</b> · el bot que cotiza, cobra y cierra</span>
+      <span class="chip"><b>Mercado</b> · PyMEs de Argentina</span>
+      <span class="chip"><b>Base</b> · ~60-65% ya construido en PLUR</span>
+    </div>
+  </div>
+</div>
+
+<!-- 01 DECISIONES -->
+<section id="decisiones">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">01</span><div><h2>Todas las decisiones, área por área</h2></div></div>
+    <p class="sec-sub">El registro completo de lo definido. Cada fila es una decisión cerrada que guía la construcción.</p>
+    <div class="tblwrap">
+      <table>
+        <tr><th>Área</th><th>Decisión</th></tr>
+        <tr><td class="a">Mercado</td><td>PyMEs de Argentina (producto <b>horizontal</b>, se vende por vertical).</td></tr>
+        <tr><td class="a">Posicionamiento</td><td><b>Ventas</b> — el producto atiende y vende, pero el mensaje lidera con vender. "El bot que cotiza, cobra y cierra."</td></tr>
+        <tr><td class="a">Mensaje</td><td>"Atendé y vendé por WhatsApp, Instagram, Facebook y tu web. El bot que cotiza, cobra con Mercado Pago y cierra — <b>en todos tus canales</b>."</td></tr>
+        <tr><td class="a">Verticales faro</td><td>5: <b>hogar/oficios</b> (insignia, es tu rubro), gastronomía, estética/turnos, comercio, inmobiliarias.</td></tr>
+        <tr><td class="a">Diferenciales de cierre</td><td>① Presupuesto con PDF ② Logística/envíos ③ <b>Cobra en el chat (MP)</b> ④ Speed-to-lead + handoff caliente ⑤ Recupero automático.</td></tr>
+        <tr><td class="a">Precios (regular)</td><td>Starter <b>US$29</b> · Pro <b>US$49</b> · Business <b>US$79</b> /mes.</td></tr>
+        <tr><td class="a">Rampa de enganche</td><td><b>Mes 1 gratis</b> (versión Pro, todos los canales) → <b>Meses 2-3 al −30%</b> → <b>Mes 4 tarifa plena</b>. Sin tarjeta. Anual: 2 meses off.</td></tr>
+        <tr><td class="a">Comisión por venta (MP)</td><td>Starter <b>1%</b> · Pro <b>0,5%</b> · Business <b>0%</b>. Solo al concretar la venta. <i>"Ganamos solo cuando vos ganás."</i> Mes 1: 0 en todo.</td></tr>
+        <tr><td class="a">Cobros</td><td>MP <b>Suscripciones</b> (tu cuota) + MP <b>Marketplace/OAuth</b> (cada cliente cobra a los suyos; la plata va a su cuenta).</td></tr>
+        <tr><td class="a">Servidor</td><td><b>Cloudflare</b> (Workers + D1 + R2), multi-tenant, config por cliente. Sin cambio de stack.</td></tr>
+        <tr><td class="a">Identidad (login)</td><td>Login propio <b>usuario/contraseña</b> (reemplaza Cloudflare Access, que es para el equipo interno).</td></tr>
+        <tr><td class="a">Conexión de canales</td><td>WhatsApp por <b>Embedded Signup</b> (Tech Provider), IG/FB por <b>Facebook Login for Business</b>, web por widget. Enrutamiento por <code>phone_number_id</code>/<code>page_id</code>→tenant.</td></tr>
+        <tr><td class="a">Diseño</td><td>"<b>Sala de control</b>" editorial: fondo oscuro, un acento latón, serif + mono, líneas finas. Anti-genérico.</td></tr>
+        <tr><td class="a">Onboarding</td><td>Selector de <b>rubro</b> → clona el bot base del rubro → configura. Muy visual, con efectos.</td></tr>
+        <tr><td class="a">Bots por rubro</td><td>Plantillas por vertical (config). <b>Hogar es la insignia</b> (dogfooding con PLUR).</td></tr>
+        <tr><td class="a">Marketing</td><td>Lidera con ventas. Meta Ads (motor) + Google Ads (intención) + SEO + contenido en 6 redes + X build-in-public + alianzas/referidos.</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 02 ARQUITECTURA -->
+<section id="arq">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">02</span><div><h2>Arquitectura técnica</h2></div></div>
+    <p class="sec-sub">Una sola app en Cloudflare, muchos clientes aislados. Todos entran por vatuta.ar.</p>
+    <div class="grid g3">
+      <div class="card"><h3><span class="ico">🧱</span>Multi-tenancy</h3><ul><li><code>tenant_id</code> en todas las tablas + filtro en cada query</li><li>Config por cliente en tabla <code>tenants</code> (marca, prompt, logo, credenciales)</li><li>R2 con prefijo por tenant · escala a DB-por-tenant para grandes</li></ul></div>
+      <div class="card"><h3><span class="ico">🔐</span>Identidad y permisos</h3><ul><li>Login propio (hash de contraseña + sesión)</li><li>Cada usuario pertenece a un tenant</li><li>Reusa <code>permisos.js</code> (deny-by-default) cambiando "red" por "tenant"</li></ul></div>
+      <div class="card"><h3><span class="ico">📡</span>Canales por cliente</h3><ul><li>WhatsApp: Embedded Signup (Tech Provider)</li><li>IG/FB: Facebook Login for Business</li><li>Web: widget con <code>tenant</code></li><li>Ruteo: el id del mensaje → tenant (ya se extrae)</li></ul></div>
+      <div class="card"><h3><span class="ico">💳</span>Pagos (doble MP)</h3><ul><li>Tu cuota: MP Suscripciones (una cuenta, la tuya)</li><li>Cobro del cliente a los suyos: MP Marketplace + OAuth (una integración, muchos conectados)</li><li>Comisión: <code>marketplace_fee</code> por plan</li></ul></div>
+      <div class="card"><h3><span class="ico">📦</span>Catálogo y presupuestos</h3><ul><li>Reusa el motor de PLUR (catálogo editable + PDF)</li><li>Generalizar el esquema (hoy modelado para ollas)</li><li>Presupuesto automático (bot) y manual (panel)</li></ul></div>
+      <div class="card"><h3><span class="ico">🤖</span>Bot e IA</h3><ul><li>Gemini con function calling (reusa <code>gemini.js</code>/<code>agente.js</code>)</li><li>Prompt/persona por tenant</li><li>Flujos por rubro (patrón de <code>restauracion.js</code>)</li></ul></div>
+    </div>
+    <div class="callout"><div class="ic">◎</div><div><h4>El 80% del riesgo técnico está en 2 lugares</h4><p>(1) el <b>aislamiento multi-tenant</b> — una fuga entre clientes es fatal — y (2) el <b>onboarding de canales</b> (Embedded Signup + FB Login + MP OAuth). Lo demás ya está construido o es estándar.</p></div></div>
+  </div>
+</section>
+
+<!-- 03 REPO -->
+<section id="repo">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">03</span><div><h2>Qué se reusa del repo de PLUR</h2></div></div>
+    <p class="sec-sub">Auditoría de los 44 módulos, 15 pantallas y 19 migraciones de la última versión (con catálogo editable y presupuestos manuales).</p>
+    <div class="verdict"><div class="big">~62%<small>del núcleo SaaS ya construido</small></div><div><p style="margin:0;">La mitad más difícil ya está y <b>en producción</b>: bot omnicanal con IA, bandeja unificada, <b>catálogo editable + presupuestos con PDF</b>, CRM, auth/permisos serios y disciplina de tests. Todo single-tenant pero muy bien modularizado.</p><p style="margin:8px 0 0;color:var(--muted);font-size:.9rem;">Dato de oro: el código <b>ya extrae <code>phone_number_id</code> y <code>page_id</code></b> de cada mensaje — la pieza del ruteo multi-tenant ya existe.</p></div></div>
+    <div class="split">
+      <div class="col reuse"><h4>✓ Joyas reusables</h4><ul>
+        <li><b>Bot + bandeja</b> (bot·whatsapp·messenger·bandeja·conversacion·gemini)</li>
+        <li><b>Catálogo + presupuestos + PDF</b> (catalogo·presupuesto·presupuestos·presupuesto_pdf)</li>
+        <li><b>Auth/permisos</b> (jwt·auth·permisos)</li>
+        <li><b>CRM de leads</b> + ingreso público blindado</li>
+        <li><b>Stack Cloudflare</b> "degrada sin romper" + PWA + push</li>
+      </ul></div>
+      <div class="col spec"><h4>◐ Generalizar (de PLUR)</h4><ul>
+        <li><b>restauracion.js</b> → patrón de flujo por rubro</li>
+        <li><b>ruteo.js</b> (oficinas PLUR) → config por tenant</li>
+        <li>Esquema de <b>catalogo_items</b> (columnas ollas) → genérico</li>
+        <li><b>prompt_sistema.js</b> → por tenant</li>
+        <li><b>padron/representantes</b> → módulo opcional o fuera</li>
+      </ul></div>
+      <div class="col miss"><h4>✗ Falta construir</h4><ul>
+        <li><b>tenant_id</b> en toda la base + aislamiento</li>
+        <li><b>Login propio</b> multi-cliente</li>
+        <li><b>Config/credenciales por tenant</b></li>
+        <li><b>Embedded Signup + FB Login + MP OAuth</b></li>
+        <li><b>Billing + onboarding + super-admin</b></li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ROADMAP -->
+<section id="roadmap">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">04</span><div><h2>Roadmap por fases</h2></div></div>
+    <p class="sec-sub">Producto y marketing sincronizados. Estimación a plataforma self-service completa: <strong>~4–7 meses</strong>. Cada fase desbloquea la siguiente.</p>
+    <div>
+      <div class="phase">
+        <div class="w"><div class="n">Fase 0</div><div class="d">2–4 sem · en paralelo</div><div class="goal">Lo que tarda por terceros</div></div>
+        <div><h3>Fundaciones (legal + Meta + MP + marca)</h3>
+          <div class="items"><span>Sociedad / monotributo</span><span>Verificación de negocio Meta</span><span>Alta Tech Provider</span><span>App Marketplace de MP</span><span>Términos + Privacidad (Ley 25.326)</span><span>Cuentas de redes</span></div>
+          <div class="repo">Repo vatuta-web: la landing "Próximamente" <b>ya está publicada</b> en vatuta.ar.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="w"><div class="n">Fase 1</div><div class="d">4–8 sem</div><div class="goal">El corazón técnico</div></div>
+        <div><h3>Núcleo multi-tenant</h3>
+          <div class="items"><span>Tabla tenants + config por cliente</span><span><code>tenant_id</code> en toda la base</span><span>Aislamiento en el Worker</span><span>Login propio</span><span>Super-admin</span><span>Ruteo por canal→tenant</span></div>
+          <div class="repo">Se porta el núcleo de PLUR: <b>bot·bandeja·catálogo·presupuestos·leads·permisos</b>. Se saca lo específico (restauracion/ruteo/padron) a plantillas.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="w"><div class="n">Fase 2</div><div class="d">4–8 sem</div><div class="goal">Que se venda solo</div></div>
+        <div><h3>Self-service + canales + billing + pago</h3>
+          <div class="items"><span>Registro + wizard</span><span>Embedded Signup (WA)</span><span>FB Login (IG/FB)</span><span>MP Suscripciones (cuota)</span><span>MP Marketplace (cobro + comisión)</span><span>Límites y rampa por plan</span></div>
+          <div class="repo">Acá se cierran el modelo de membresía, el mes gratis y el "cobra con MP".</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="w"><div class="n">Fase 3</div><div class="d">4–8 sem</div><div class="goal">De "funciona" a premium</div></div>
+        <div><h3>Bots por rubro + onboarding + diseño</h3>
+          <div class="items"><span>Plantillas de los 5 rubros</span><span>Selector de rubro (visual)</span><span>Catálogo/presupuestos genéricos</span><span>Reportes de valor</span><span>Diseño "sala de control"</span></div>
+          <div class="repo">Se implementan el estudio de rubros y el mockup de onboarding ya diseñados.</div>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="w"><div class="n">Fase 4</div><div class="d">continuo</div><div class="goal">Crecer</div></div>
+        <div><h3>Lanzamiento + marketing + escala</h3>
+          <div class="items"><span>Meta/Google Ads</span><span>Contenido + X build-in-public</span><span>Alianzas / referidos</span><span>DB-por-tenant</span><span>Más verticales · i18n</span></div>
+          <div class="repo">Se activa el Plan de marketing. A los ~100 clientes: tarjeta al inicio + precio regular.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 KPIs -->
+<section id="kpis">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">05</span><div><h2>KPIs y riesgos</h2></div></div>
+    <div class="grid g2">
+      <div class="card"><h3><span class="ico">📈</span>Qué medir</h3><ul><li><b>MRR</b> y margen neto</li><li><b>CAC</b> vs <b>LTV</b> por canal</li><li>Activación de la prueba (llegó al "aha")</li><li>Conversión prueba → pago · churn</li><li>Margen por cliente (la brújula del tablero)</li></ul></div>
+      <div class="card"><h3><span class="ico">⚠︎</span>Riesgos y mitigación</h3><ul><li><b>Fuga entre tenants</b> → tests de aislamiento duros</li><li><b>Onboarding de Meta</b> (tarda, límite 10/7 días) → empezar Fase 0 ya</li><li><b>Cliente pesado</b> come margen → límites + excedente</li><li><b>Confianza (marca nueva)</b> → caso PLUR + build-in-public</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 DOCS -->
+<section id="docs">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">06</span><div><h2>Los documentos del proyecto</h2></div></div>
+    <p class="sec-sub">Este plan maestro se apoya en 6 documentos de detalle. Todos quedan versionados en el repo <code>vatuta-web</code> (rama de planificación).</p>
+    <div class="docs">
+      <div class="doc"><span class="e">🎼</span><div><b>Plan estratégico</b><p>Modelo de negocio, membresía, tablero de control.</p></div></div>
+      <div class="doc"><span class="e">🔍</span><div><b>Análisis competitivo</b><p>10 competidores + la matriz de qué reusar.</p></div></div>
+      <div class="doc"><span class="e">🎛️</span><div><b>Diseño de producto</b><p>La bandeja "sala de control".</p></div></div>
+      <div class="doc"><span class="e">📣</span><div><b>Plan de marketing</b><p>SEO, ads, redes, video, X.</p></div></div>
+      <div class="doc"><span class="e">🧩</span><div><b>Estudio de rubros</b><p>Los 5 verticales al detalle.</p></div></div>
+      <div class="doc"><span class="e">🚀</span><div><b>Onboarding</b><p>Selector de rubro interactivo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 START -->
+<section id="start">
+  <div class="wrap">
+    <div class="sec-head"><span class="no">07</span><div><h2>Por dónde empiezo (la próxima sesión)</h2></div></div>
+    <div class="start">
+      <p style="margin:0;color:var(--muted);">La Fase 1 arranca sobre el código de PLUR. El orden de los primeros pasos de construcción:</p>
+      <ol>
+        <li><b>Esquema de tenants + <code>tenant_id</code>.</b> <span>Crear la tabla <code>tenants</code> (marca, config, credenciales) y una migración que agregue <code>tenant_id</code> a cada tabla del núcleo. Definir la estrategia de aislamiento.</span></li>
+        <li><b>Login propio.</b> <span>Tabla de usuarios con hash de contraseña + sesión, cada usuario atado a un tenant. Reusar <code>permisos.js</code> cambiando el eje a "tenant".</span></li>
+        <li><b>Portar el núcleo con tenant_id.</b> <span>Adaptar <code>bot·bandeja·catálogo·presupuestos·leads</code> para filtrar por tenant y leer credenciales de la tabla, no de env.</span></li>
+        <li><b>Ruteo por canal → tenant.</b> <span>Tabla <code>tenant_canales</code> (phone_number_id/page_id → tenant) y el lookup al entrar el webhook (la extracción ya existe).</span></li>
+        <li><b>Sacar lo de PLUR a plantillas.</b> <span>Mover <code>restauracion/ruteo/padron</code> y el esquema de catálogo a config por vertical.</span></li>
+      </ol>
+      <p style="margin:16px 0 0;color:var(--ink);font-weight:600;">En la próxima sesión: sumás el repo, tomamos este plan y arrancamos por el paso 1.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Plan de acción maestro de Vatuta · julio 2026 · integra las 16 decisiones definidas, la auditoría del repo <code>povoronik/plur-app-provisorio</code> (@e0845ec) y los 6 documentos del proyecto. Cifras y plazos de referencia.</div>
+</footer>
+
+</body></html>

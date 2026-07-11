@@ -1,0 +1,148 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0">
+<title>Vatuta · Onboarding (elegí tu rubro)</title>
+<style>
+  :root{
+    --bg:#0C0D10;--panel:#131519;--panel-2:#181B20;--panel-3:#1E2127;
+    --line:rgba(255,255,255,.075);--line-2:rgba(255,255,255,.14);
+    --ink:#ECEAE2;--muted:#9A978C;--faint:#635F57;
+    --brass:#E0A93C;--brass-ink:#F2D18C;--brass-soft:rgba(224,169,60,.13);
+    --good:#5EC08A;--good-soft:rgba(94,192,138,.13);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px;}
+  .intro{padding:50px 0 22px;}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-ink);font-weight:600;}
+  .intro h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,4.2vw,3rem);letter-spacing:-.015em;margin:.35em 0 .3em;line-height:1.1;text-wrap:balance;}
+  .intro h1 em{font-style:italic;color:var(--brass-ink);}
+  .intro p{color:var(--muted);max-width:60ch;margin:0;font-size:1.05rem;}
+
+  .frame-scroll{overflow-x:auto;padding:6px 0;}
+  .frame{min-width:980px;background:var(--panel);border:1px solid var(--line-2);border-radius:14px;overflow:hidden;box-shadow:0 40px 120px -40px rgba(0,0,0,.8);margin:12px 0;}
+  .titlebar{display:flex;align-items:center;gap:14px;height:46px;padding:0 18px;border-bottom:1px solid var(--line);background:var(--panel-2);}
+  .dots{display:flex;gap:7px;}.dots i{width:11px;height:11px;border-radius:50%;background:#2c2f36;display:block;}
+  .brandmini{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;}
+  .brandmini .m{width:22px;height:22px;border-radius:6px;background:linear-gradient(150deg,var(--brass),#9a6a12);color:#12100b;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:13px;}
+  .progress{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;color:var(--faint);letter-spacing:.05em;}
+  .pbar{display:flex;gap:4px;}.pbar i{width:26px;height:4px;border-radius:2px;background:var(--panel-3);display:block;}.pbar i.on{background:var(--brass);}
+
+  .stage{display:grid;grid-template-columns:1.15fr 1fr;gap:0;}
+  @media(max-width:820px){.stage{grid-template-columns:1fr;}}
+  .pick{padding:26px 28px;border-right:1px solid var(--line);}
+  @media(max-width:820px){.pick{border-right:none;border-bottom:1px solid var(--line);}}
+  .pick h2{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:0 0 5px;letter-spacing:-.01em;}
+  .pick .hint{color:var(--muted);font-size:.95rem;margin:0 0 20px;}
+  .rubros{display:grid;grid-template-columns:1fr 1fr;gap:11px;}
+  .rubro{display:flex;align-items:center;gap:13px;padding:14px 15px;border:1px solid var(--line-2);border-radius:11px;background:var(--panel-2);cursor:pointer;transition:transform .15s ease,border-color .15s ease,background .15s ease;text-align:left;}
+  .rubro:hover{transform:translateY(-2px);border-color:var(--brass);}
+  .rubro .em{width:38px;height:38px;border-radius:9px;background:var(--panel-3);display:grid;place-items:center;font-size:19px;flex-shrink:0;transition:background .15s ease;}
+  .rubro .tx b{display:block;font-size:.98rem;font-family:var(--serif);font-weight:600;}
+  .rubro .tx span{font-size:11.5px;color:var(--faint);}
+  .rubro.sel{border-color:var(--brass);background:var(--brass-soft);box-shadow:0 0 0 1px var(--brass) inset;}
+  .rubro.sel .em{background:var(--brass);}
+  .rubro.sel .tx b{color:var(--brass-ink);}
+  .rubro.full{grid-column:1 / -1;}
+  .rubro .star{margin-left:auto;font-family:var(--mono);font-size:9px;color:var(--brass-ink);letter-spacing:.05em;border:1px solid var(--line-2);border-radius:20px;padding:2px 7px;}
+
+  .preview{padding:26px 28px;background:var(--bg);display:flex;flex-direction:column;}
+  .preview .plab{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);margin-bottom:14px;}
+  .phone{background:var(--panel);border:1px solid var(--line-2);border-radius:16px;padding:14px;flex:1;min-height:280px;display:flex;flex-direction:column;gap:9px;}
+  .phw{display:flex;align-items:center;gap:9px;padding-bottom:11px;border-bottom:1px solid var(--line);margin-bottom:3px;}
+  .phw .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(150deg,var(--brass),#9a6a12);color:#12100b;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:15px;}
+  .phw b{font-size:13.5px;} .phw span{font-family:var(--mono);font-size:9.5px;color:var(--good);display:block;margin-top:1px;}
+  .bub{max-width:88%;padding:9px 13px;border-radius:4px 12px 12px 12px;background:var(--panel-3);border:1px solid var(--line);font-size:13.5px;line-height:1.45;align-self:flex-start;}
+  .bub.anim{animation:pop .38s ease both;}
+  @keyframes pop{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .chipslab{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);margin:16px 0 9px;}
+  .dchips{display:flex;flex-wrap:wrap;gap:6px;}
+  .dchips span{font-family:var(--mono);font-size:11px;color:var(--brass-ink);background:var(--brass-soft);border:1px solid var(--line-2);border-radius:20px;padding:3px 10px;animation:pop .38s ease both;}
+  .cta{margin-top:18px;display:flex;align-items:center;gap:12px;}
+  .cta .go{background:var(--brass);color:#12100b;border:none;border-radius:8px;padding:11px 20px;font-weight:700;font-size:14px;font-family:var(--sans);cursor:pointer;}
+  .cta .skip{font-family:var(--mono);font-size:11px;color:var(--faint);}
+
+  .notes{padding:34px 0 58px;}
+  .notes h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 16px;}
+  .ng{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;}
+  @media(max-width:820px){.ng{grid-template-columns:1fr 1fr;}}
+  .nc{border:1px solid var(--line);border-radius:11px;padding:15px 16px;background:var(--panel);}
+  .nc b{font-family:var(--serif);font-weight:600;font-size:1rem;display:block;margin-bottom:5px;}
+  .nc p{margin:0;color:var(--muted);font-size:.88rem;}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+
+<div class="wrap intro">
+  <div class="eyebrow">Vatuta · onboarding · paso 2</div>
+  <h1>Elegí tu rubro y <em>mirá tu bot armarse</em> solo.</h1>
+  <p>El momento más importante del alta: en un clic, el cliente arranca con un bot base pensado para su negocio — 80% hecho. Tocá los rubros y mirá cómo cambia el bot. (Es interactivo.)</p>
+</div>
+
+<div class="wrap frame-scroll">
+  <div class="frame">
+    <div class="titlebar">
+      <div class="dots"><i></i><i></i><i></i></div>
+      <div class="brandmini"><span class="m">V</span> Configurá tu bot</div>
+      <div class="progress">PASO 2 DE 4 <span class="pbar"><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+    </div>
+    <div class="stage">
+      <div class="pick">
+        <h2>¿A qué se dedica tu negocio?</h2>
+        <p class="hint">Elegí tu rubro y te dejamos el bot casi listo. Después ajustás tus datos.</p>
+        <div class="rubros" id="rubros">
+          <button class="rubro sel" data-k="hogar"><span class="em">🔨</span><span class="tx"><b>Hogar y oficios</b><span>restauración · reformas</span></span><span class="star">★</span></button>
+          <button class="rubro" data-k="gastro"><span class="em">🍽️</span><span class="tx"><b>Gastronomía</b><span>delivery · reservas</span></span></button>
+          <button class="rubro" data-k="estetica"><span class="em">💇</span><span class="tx"><b>Estética y turnos</b><span>peluquería · spa</span></span></button>
+          <button class="rubro" data-k="comercio"><span class="em">🛍️</span><span class="tx"><b>Comercio / tienda</b><span>indumentaria · retail</span></span></button>
+          <button class="rubro full" data-k="inmo"><span class="em">🏢</span><span class="tx"><b>Inmobiliaria / servicios profesionales</b><span>lead-gen · turnos de visita</span></span></button>
+        </div>
+      </div>
+      <div class="preview">
+        <div class="plab">Así arranca tu bot</div>
+        <div class="phone">
+          <div class="phw"><div class="av">V</div><div><b id="pvName">Tu negocio</b><span>bot activo · responde en segundos</span></div></div>
+          <div id="pvMsgs"></div>
+        </div>
+        <div class="chipslab">Vas a cargar (te guiamos)</div>
+        <div class="dchips" id="pvChips"></div>
+        <div class="cta"><button class="go">Usar este bot base →</button><span class="skip">o empezá de cero</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap notes">
+  <h3>Cómo se siente (los principios del onboarding)</h3>
+  <div class="ng">
+    <div class="nc"><b>Un clic, no un formulario</b><p>El rubro se elige tocando, no escribiendo. La menor fricción posible en el paso clave.</p></div>
+    <div class="nc"><b>Cambio visual inmediato</b><p>Al elegir, el bot de la derecha se rearma al instante. Ves lo que vas a tener antes de configurar nada.</p></div>
+    <div class="nc"><b>Palabras justas</b><p>"¿A qué se dedica tu negocio?" · "Vas a cargar". Nada de jerga técnica ni instrucciones largas.</p></div>
+    <div class="nc"><b>Progreso claro</b><p>"Paso 2 de 4" y una barra. El cliente siempre sabe cuánto falta para tener el bot andando.</p></div>
+  </div>
+</div>
+
+<script>
+  var DATA = {
+    hogar:{name:"Muebles Ríos",msgs:["¡Hola! 👋 Soy el asistente de Muebles Ríos.","Mandame una foto de lo que querés restaurar, con las medidas, y te paso un presupuesto al toque 📷"],chips:["Servicios y precios","Zonas de cobertura","Retiro y entrega","% de seña"]},
+    gastro:{name:"La Rotisería",msgs:["¡Hola! 👋 ¿Querés pedir delivery, reservar una mesa o ver la carta? 🍽️","Decime tu dirección y te digo si llegamos a tu zona."],chips:["Menú y precios","Zonas de delivery","Horarios","Medios de pago"]},
+    estetica:{name:"Studio Delfi",msgs:["¡Hola! 👋 ¿Reservamos un turno? Decime qué servicio buscás 💇","Te muestro los horarios libres y lo dejás confirmado con una seña."],chips:["Servicios y duración","Agenda","Profesionales","Seña"]},
+    comercio:{name:"Tienda Nube",msgs:["¡Hola! 👋 ¿Qué producto estás buscando? 🛍️","Te digo si hay stock en tu talle y te lo despacho a tu casa."],chips:["Catálogo y stock","Envíos por CP","Medios de pago","Tiendanube"]},
+    inmo:{name:"Inmobiliaria Sur",msgs:["¡Hola! 👋 ¿Buscás comprar, alquilar o hacer una consulta? Te ayudo al toque 🏢","Contame zona y presupuesto y te muestro lo que tenemos disponible."],chips:["Propiedades / servicios","Agenda de visitas","Requisitos","Calificación de leads"]}
+  };
+  var msgsEl=document.getElementById('pvMsgs'),chipsEl=document.getElementById('pvChips'),nameEl=document.getElementById('pvName');
+  function render(k){
+    var d=DATA[k]; nameEl.textContent=d.name;
+    msgsEl.innerHTML=''; chipsEl.innerHTML='';
+    d.msgs.forEach(function(m,i){var b=document.createElement('div');b.className='bub anim';b.style.animationDelay=(i*0.12)+'s';b.textContent=m;msgsEl.appendChild(b);});
+    d.chips.forEach(function(c,i){var s=document.createElement('span');s.style.animationDelay=(0.1+i*0.06)+'s';s.textContent=c;chipsEl.appendChild(s);});
+  }
+  document.getElementById('rubros').addEventListener('click',function(e){
+    var btn=e.target.closest('.rubro'); if(!btn)return;
+    [].forEach.call(this.querySelectorAll('.rubro'),function(b){b.classList.remove('sel');});
+    btn.classList.add('sel'); render(btn.getAttribute('data-k'));
+  });
+  render('hogar');
+</script>
+
+</body></html>
