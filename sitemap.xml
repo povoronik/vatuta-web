@@ -6,4 +6,9 @@
   <url><loc>https://vatuta.ar/contacto.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://vatuta.ar/privacidad.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://vatuta.ar/terminos.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://vatuta.ar/landing-hogar.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vatuta.ar/landing-gastronomia.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vatuta.ar/landing-estetica.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vatuta.ar/landing-comercio.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vatuta.ar/landing-inmobiliaria.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
