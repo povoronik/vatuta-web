@@ -9,6 +9,10 @@
 <meta property="og:title" content="Vatuta — Contacto">
 <meta property="og:description" content="Escribinos por el formulario, WhatsApp o Messenger, o pasá por nuestra oficina en Vieytes 36, Ciudadela.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://vatuta.ar/og.png">
+<meta property="og:url" content="https://vatuta.ar/contacto.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://vatuta.ar/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='16' rx='14' ry='11.5' fill='%23E0A93C'/%3E%3Ccircle cx='16' cy='16' r='14.5' fill='none' stroke='%23E0A93C' stroke-width='2.6'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='15' font-weight='700' fill='%230A0B0E' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
 <style>
   :root{
@@ -120,13 +124,37 @@
     <div class="card reveal">
       <h2>Dejanos tu mensaje</h2>
       <p class="lead">Te respondemos a la brevedad, en horario de oficina.</p>
-      <form class="form" onsubmit="return false">
-        <input type="text" placeholder="Tu nombre">
-        <input type="text" placeholder="WhatsApp o email">
-        <input type="text" placeholder="Tu negocio / rubro (opcional)">
-        <textarea placeholder="Contanos qué necesitás…"></textarea>
+      <form class="form" id="contactoForm">
+        <input id="f_nombre" type="text" placeholder="Tu nombre" required>
+        <input id="f_contacto" type="text" placeholder="WhatsApp o email" required>
+        <input id="f_negocio" type="text" placeholder="Tu negocio / rubro (opcional)">
+        <textarea id="f_mensaje" placeholder="Contanos qué necesitás…"></textarea>
         <button class="btn p" type="submit">Enviar mensaje →</button>
+        <div id="f_msg" style="margin-top:12px;font-size:.9rem;color:var(--brass-ink);min-height:1em"></div>
       </form>
+      <script>
+      document.getElementById('contactoForm').addEventListener('submit', async function(e){
+        e.preventDefault();
+        var msg = document.getElementById('f_msg');
+        var contacto = document.getElementById('f_contacto').value.trim();
+        var esEmail = contacto.indexOf('@') > -1;
+        msg.textContent = 'Enviando…';
+        try{
+          var r = await fetch('https://app.vatuta.ar/api/contacto', {
+            method:'POST', headers:{'content-type':'application/json'},
+            body: JSON.stringify({
+              nombre: document.getElementById('f_nombre').value.trim(),
+              email: esEmail ? contacto : '',
+              whatsapp: esEmail ? '' : contacto,
+              rubro: document.getElementById('f_negocio').value.trim(),
+              mensaje: document.getElementById('f_mensaje').value.trim()
+            })
+          });
+          if(r.ok){ msg.style.color='var(--good,#5EC08A)'; msg.textContent='¡Gracias! Te vamos a contactar a la brevedad.'; e.target.reset(); }
+          else { msg.style.color='#f19a9a'; msg.textContent='No se pudo enviar. Escribinos por WhatsApp.'; }
+        }catch(_){ msg.style.color='#f19a9a'; msg.textContent='No se pudo enviar. Escribinos por WhatsApp.'; }
+      });
+      </script>
     </div>
 
     <div class="card reveal">
@@ -152,7 +180,7 @@
 <footer><div class="wrap row">
   <a href="index.html" class="logo"><img class="logomark" src="logo.svg" alt="Vatuta"></a>
   <div>Atendé y vendé por WhatsApp, Instagram, Facebook y tu web.</div>
-  <div><a href="mailto:hola@vatuta.ar">hola@vatuta.ar</a> · vatuta.ar</div>
+  <div><a href="mailto:hola@vatuta.ar">hola@vatuta.ar</a> · <a href="privacidad.html">Privacidad</a> · <a href="terminos.html">Términos</a></div>
 </div></footer>
 
 <div class="fab">
@@ -169,5 +197,6 @@
 })();
 </script>
 
+<script src="https://app.vatuta.ar/chat-widget.js" data-slug="vatuta" data-pos="left"></script>
 </body>
 </html>
