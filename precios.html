@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0A0B0E">
+<title>Vatuta — Precios</title>
+<meta name="description" content="Planes simples y en pesos. Primer mes gratis, sin tarjeta, luego 2 meses al 30% menos. Cobrá a tus clientes con Mercado Pago.">
+<meta property="og:title" content="Vatuta — Precios">
+<meta property="og:description" content="Planes simples y en pesos. Primer mes gratis, sin tarjeta, luego 2 meses al 30% menos. Cobrá a tus clientes con Mercado Pago.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0B0E'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23E0A93C' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0A0B0E;--bg-2:#101216;--panel:#15171C;--panel-2:#1B1E24;
+    --line:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.15);
+    --ink:#F1EFE7;--muted:#9E9B90;--faint:#65625B;
+    --brass:#E0A93C;--brass-ink:#F3D693;--brass-deep:#B27E1E;--brass-soft:rgba(224,169,60,.12);
+    --good:#5EC08A;--good-soft:rgba(94,192,138,.14);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--brass-ink);font-weight:600;}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.08;letter-spacing:-.02em;text-wrap:balance;}
+  .ggrad{background:linear-gradient(120deg,#fff 30%,var(--brass-ink) 70%,var(--brass) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px;border-radius:10px;padding:13px 22px;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,background .18s ease;border:none;}
+  .btn.p{background:var(--brass);color:#12100b;}.btn.p:hover{transform:translateY(-2px);box-shadow:0 14px 34px -10px rgba(224,169,60,.55);background:var(--brass-ink);}
+  .btn.g{border:1px solid var(--line-2);color:var(--ink);background:transparent;}.btn.g:hover{border-color:var(--brass);color:var(--brass-ink);}
+
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0)*90ms);}
+    .reveal.in{opacity:1;transform:none;}
+  }
+
+  nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 76%,transparent);border-bottom:1px solid var(--line);}
+  nav .row{display:flex;align-items:center;gap:26px;height:64px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;}
+  .logo .m{width:30px;height:30px;border-radius:8px;background:linear-gradient(150deg,var(--brass),var(--brass-deep));color:#12100b;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:18px;}
+  nav .links{display:flex;gap:22px;margin-left:14px;}
+  nav .links a{font-size:14px;color:var(--muted);font-weight:500;}nav .links a:hover,nav .links a.on{color:var(--ink);}
+  nav .act{margin-left:auto;display:flex;align-items:center;gap:16px;}
+  nav .act .in{font-size:14px;color:var(--muted);font-weight:600;}
+  .burger{display:none;flex-direction:column;gap:4px;width:42px;height:42px;border:1px solid var(--line-2);border-radius:9px;background:var(--panel);cursor:pointer;align-items:center;justify-content:center;}
+  .burger span{width:18px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s,opacity .2s;}
+  .burger.x span:nth-child(1){transform:translateY(6px) rotate(45deg);}.burger.x span:nth-child(2){opacity:0;}.burger.x span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;bottom:0;z-index:48;background:var(--bg);padding:18px 24px;flex-direction:column;}
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:15px 6px;font-size:17px;color:var(--ink);border-bottom:1px solid var(--line);}
+  .mobile-menu a.in{color:var(--muted);}.mobile-menu .btn{margin-top:18px;border-bottom:none;}
+  @media(max-width:780px){nav .links{display:none;}nav .act{display:none;}.burger{display:flex;margin-left:auto;}}
+
+  .hero{position:relative;padding:66px 0 20px;text-align:center;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 60% at 50% -10%,rgba(224,169,60,.15),transparent 60%);}
+  .hero>.wrap{position:relative;}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);margin:12px 0 16px;}
+  .hero .sub{font-size:clamp(1.05rem,1.8vw,1.3rem);color:var(--muted);max-width:44ch;margin:0 auto;}
+
+  /* toggle */
+  .toggle{display:inline-flex;align-items:center;gap:4px;background:var(--panel);border:1px solid var(--line-2);border-radius:30px;padding:4px;margin:28px auto 0;}
+  .toggle button{border:none;background:transparent;color:var(--muted);font-family:var(--sans);font-weight:600;font-size:13.5px;padding:9px 18px;border-radius:24px;cursor:pointer;transition:.18s;}
+  .toggle button.on{background:var(--brass);color:#12100b;}
+  .toggle .save{font-family:var(--mono);font-size:10.5px;color:var(--good);margin-left:4px;}
+
+  /* plans */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
+  @media(max-width:860px){.plans{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto;}}
+  .plan{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column;transition:transform .2s ease;}
+  .plan:hover{transform:translateY(-4px);}
+  .plan.pop{position:relative;border:1px solid transparent;background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(150deg,var(--brass),var(--brass-deep)) border-box;box-shadow:0 30px 70px -30px rgba(224,169,60,.3);}
+  .plan.pop::before{content:"MÁS ELEGIDO";position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--brass);color:#12100b;font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.08em;padding:4px 12px;border-radius:20px;}
+  .plan .nm{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-ink);font-weight:600;}
+  .plan .price{font-family:var(--serif);font-size:2.8rem;margin:10px 0 2px;line-height:1;}
+  .plan .price small{font-size:.9rem;color:var(--muted);font-family:var(--sans);}
+  .plan .per{font-size:.85rem;color:var(--faint);}
+  .plan .cta{margin:20px 0 4px;}
+  .plan ul{list-style:none;margin:14px 0 0;padding:0;flex:1;}
+  .plan li{font-size:.92rem;padding:8px 0 8px 26px;position:relative;color:var(--muted);border-top:1px solid var(--line);}
+  .plan li:first-child{border-top:none;}
+  .plan li::before{content:"✓";position:absolute;left:0;color:var(--brass);font-weight:700;}
+  .plan li b{color:var(--ink);font-weight:600;}
+  .plan .com{margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--faint);text-align:center;padding-top:12px;border-top:1px solid var(--line);}
+  .plan .com b{color:var(--brass-ink);}
+  .plan .freebadge{display:inline-flex;align-items:center;gap:6px;background:var(--good-soft);color:var(--good);font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:5px 11px;border-radius:20px;margin-top:12px;}
+  .plan .ctafine{text-align:center;font-size:12px;color:var(--muted);margin-top:9px;}
+  .plan .ctafine b{color:var(--brass-ink);}
+  /* cartel de oferta destacado */
+  .offer{max-width:760px;margin:34px auto 0;background:linear-gradient(120deg,var(--brass-soft),rgba(224,169,60,.04));border:1px solid var(--brass-deep);border-radius:14px;padding:16px 22px;text-align:center;font-size:15.5px;color:var(--ink);display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+  .offer .gift{font-size:20px;}
+  .offer b{color:var(--brass-ink);}
+  .offer .sep{color:var(--faint);}
+
+  section{padding:56px 0;}
+  .ramp{background:linear-gradient(160deg,rgba(224,169,60,.12),rgba(224,169,60,.03));border:1px solid var(--brass-deep);border-radius:16px;padding:26px 30px;text-align:center;margin-top:44px;}
+  .ramp h3{font-size:1.4rem;margin-bottom:14px;}
+  .ramp .steps{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;font-family:var(--mono);font-size:12.5px;}
+  .ramp .steps .s{background:var(--panel);border:1px solid var(--line-2);border-radius:10px;padding:10px 16px;}
+  .ramp .steps .s b{color:var(--brass-ink);}
+  .ramp .steps .ar{align-self:center;color:var(--faint);}
+  .ramp .fine{margin-top:14px;font-size:13px;color:var(--muted);}
+
+  .sh{text-align:center;max-width:36ch;margin:0 auto 30px;}
+  .sh h2{font-size:clamp(1.7rem,3.2vw,2.4rem);margin:10px 0 12px;}
+  .sh p{color:var(--muted);}
+
+  /* comisión */
+  .commission{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .commission .box{max-width:640px;margin:0 auto;text-align:center;}
+  .commission .big{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.2rem);}
+  .commission .big em{font-style:normal;color:var(--brass-ink);}
+  .commission p{color:var(--muted);margin-top:12px;}
+  .commission .tiers{display:flex;justify-content:center;gap:26px;margin-top:22px;flex-wrap:wrap;font-family:var(--mono);font-size:13px;}
+  .commission .tiers span{color:var(--muted);}.commission .tiers b{color:var(--brass-ink);}
+
+  /* faq */
+  .faq{max-width:760px;margin:0 auto;}
+  .qa{border-top:1px solid var(--line);padding:20px 0;}
+  .qa:last-child{border-bottom:1px solid var(--line);}
+  .qa h4{font-family:var(--serif);font-size:1.15rem;margin-bottom:7px;}
+  .qa p{color:var(--muted);font-size:.95rem;margin:0;}
+
+  .final{text-align:center;}
+  .final .box{position:relative;overflow:hidden;background:linear-gradient(160deg,rgba(224,169,60,.14),rgba(224,169,60,.03));border:1px solid var(--brass-deep);border-radius:20px;padding:52px 30px;}
+  .final h2{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:14px;}
+  .final p{color:var(--muted);font-size:1.08rem;margin-bottom:24px;}
+
+  .fab{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;flex-direction:column;gap:12px;}
+  .fab a{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 26px -6px rgba(0,0,0,.55);transition:transform .18s ease;}
+  .fab a:hover{transform:scale(1.09);}.fab a svg{width:29px;height:29px;color:#fff;}
+  .fab .wa{background:#25D366;}.fab .ms{background:radial-gradient(circle at 30% 20%,#00b2ff,#006aff 45%,#a033ff);}
+
+  footer{border-top:1px solid var(--line);padding:40px 0;color:var(--faint);font-size:13px;}
+  footer .row{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center;}
+  footer a{color:var(--muted);}
+</style>
+</head>
+<body>
+
+
+<nav class="top"><div class="wrap row">
+  <a href="index.html" class="logo"><span class="m">V</span>Vatuta</a>
+  <div class="links"><a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html" class="on">Precios</a><a href="rubros.html">Rubros</a><a href="#contacto">Contacto</a></div>
+  <div class="act"><a class="in" href="https://app.vatuta.ar">Ingresar</a><a class="btn p" href="https://app.vatuta.ar">Empezá gratis</a></div>
+  <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html">Precios</a><a href="rubros.html">Rubros</a><a href="#contacto">Contacto</a>
+  <a class="in" href="https://app.vatuta.ar">Ingresar</a><a class="btn p" href="https://app.vatuta.ar">Empezá gratis →</a>
+</div>
+
+<header class="hero"><div class="wrap">
+  <span class="eyebrow">Precios</span>
+  <h1 class="ggrad">Simple y en pesos.</h1>
+  <p class="sub">Primer mes gratis, sin tarjeta. Después, el plan que te sirva — y cambiás cuando quieras. Sin sorpresas de facturación.</p>
+  <div class="toggle" id="toggle">
+    <button class="on" data-p="m">Mensual</button>
+    <button data-p="a">Anual <span class="save">2 meses gratis</span></button>
+  </div>
+</div></header>
+
+<section style="padding-top:20px"><div class="wrap">
+  <div class="offer reveal"><span class="gift">🎁</span> <b>Primer mes 100% gratis</b> <span class="sep">·</span> sin tarjeta <span class="sep">·</span> luego <b>2 meses al −30%</b> <span class="sep">·</span> el precio completo recién el mes 4</div>
+  <div class="plans">
+    <div class="plan reveal">
+      <div class="nm">Starter</div>
+      <div class="freebadge">🎁 1<sup>er</sup> mes gratis</div>
+      <div class="price">US$<span class="amt" data-m="29" data-a="24">29</span> <small>/mes</small></div>
+      <div class="per">después del mes gratis · para arrancar</div>
+      <a class="btn g cta" href="https://app.vatuta.ar">Empezá gratis</a>
+      <div class="ctafine">sin tarjeta · luego 2 meses al <b>−30%</b></div>
+      <ul>
+        <li><b>1 canal</b> (WhatsApp)</li>
+        <li><b>1.000</b> conversaciones / mes</li>
+        <li>1 usuario</li>
+        <li>Bot con IA + bandeja</li>
+        <li>CRM de leads</li>
+        <li>Cobros con Mercado Pago</li>
+      </ul>
+      <div class="com">Comisión por venta: <b>1%</b></div>
+    </div>
+
+    <div class="plan pop reveal">
+      <div class="nm">Pro</div>
+      <div class="freebadge">🎁 1<sup>er</sup> mes gratis</div>
+      <div class="price">US$<span class="amt" data-m="49" data-a="41">49</span> <small>/mes</small></div>
+      <div class="per">después del mes gratis · el más elegido</div>
+      <a class="btn p cta" href="https://app.vatuta.ar">Empezá gratis</a>
+      <div class="ctafine">sin tarjeta · luego 2 meses al <b>−30%</b></div>
+      <ul>
+        <li><b>4 canales</b> (WhatsApp, Instagram, Facebook, web)</li>
+        <li><b>5.000</b> conversaciones / mes</li>
+        <li>Hasta 3 usuarios</li>
+        <li><b>Presupuestos con PDF</b></li>
+        <li>Envíos / logística</li>
+        <li>Recupero de ventas automático</li>
+        <li>Reportes de valor</li>
+      </ul>
+      <div class="com">Comisión por venta: <b>0,5%</b></div>
+    </div>
+
+    <div class="plan reveal">
+      <div class="nm">Business</div>
+      <div class="freebadge">🎁 1<sup>er</sup> mes gratis</div>
+      <div class="price">US$<span class="amt" data-m="79" data-a="66">79</span> <small>/mes</small></div>
+      <div class="per">después del mes gratis · para escalar</div>
+      <a class="btn g cta" href="https://app.vatuta.ar">Empezá gratis</a>
+      <div class="ctafine">sin tarjeta · luego 2 meses al <b>−30%</b></div>
+      <ul>
+        <li>Todo lo de Pro, más:</li>
+        <li><b>Usuarios ilimitados</b></li>
+        <li>Conversaciones altas + excedente</li>
+        <li><b>Marca propia</b> (white-label)</li>
+        <li>Integraciones + API</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <div class="com">Comisión por venta: <b>0%</b></div>
+    </div>
+  </div>
+
+  <div class="ramp reveal">
+    <h3>Todos los planes arrancan igual</h3>
+    <div class="steps">
+      <span class="s"><b>Mes 1</b> · gratis (versión Pro)</span><span class="ar">→</span>
+      <span class="s"><b>Meses 2 y 3</b> · −30%</span><span class="ar">→</span>
+      <span class="s"><b>Mes 4</b> · tarifa plena</span>
+    </div>
+    <div class="fine">Sin tarjeta para empezar. El primer mes es 100% gratis: sin cuota y sin comisiones.</div>
+  </div>
+</div></section>
+
+<section class="commission"><div class="wrap"><div class="box">
+  <div class="big reveal">Cobrá a tus clientes con Mercado Pago. <em>Ganamos solo cuando vos ganás.</em></div>
+  <p class="reveal">Cobramos una comisión mínima solo cuando la venta <b>se concreta</b>. Si no vendés, no pagás nada. La plata cae directo en tu cuenta.</p>
+  <div class="tiers reveal"><span>Starter <b>1%</b></span><span>Pro <b>0,5%</b></span><span>Business <b>0%</b></span></div>
+</div></div></section>
+
+<section><div class="wrap">
+  <div class="sh reveal"><span class="eyebrow">Preguntas</span><h2>Sin letra chica.</h2><p>Lo que otros esconden, acá está claro.</p></div>
+  <div class="faq">
+    <div class="qa reveal"><h4>¿Necesito tarjeta para probar?</h4><p>No. El primer mes es gratis, sin tarjeta y sin compromiso. Configurás tu bot y lo probás con tus clientes reales.</p></div>
+    <div class="qa reveal"><h4>¿El precio incluye el costo de WhatsApp?</h4><p>Los mensajes de <b>servicio</b> (cuando tu cliente te escribe primero) son gratis. Solo las <b>campañas de marketing salientes</b> tienen el costo de Meta, aparte y transparente — nunca te sorprendemos con la factura.</p></div>
+    <div class="qa reveal"><h4>¿Qué pasa si supero las conversaciones del plan?</h4><p>Te avisamos antes de llegar al límite. Podés pagar un excedente bajo o subir de plan. Nunca se corta la atención de golpe.</p></div>
+    <div class="qa reveal"><h4>¿Cómo es la comisión por venta?</h4><p>Solo cobramos un porcentaje mínimo (1% / 0,5% / 0% según el plan) <b>cuando el cliente te paga por Mercado Pago</b>. Si no hay venta, no hay comisión.</p></div>
+    <div class="qa reveal"><h4>¿Puedo cambiar de plan o dar de baja?</h4><p>Cuando quieras, sin permanencia. Subís, bajás o te vas — vos tenés el control.</p></div>
+    <div class="qa reveal"><h4>¿Cómo pago la suscripción?</h4><p>Con Mercado Pago, en pesos. Con el plan anual te llevás 2 meses gratis.</p></div>
+  </div>
+</div></section>
+
+<section class="final" id="contacto"><div class="wrap"><div class="box reveal">
+  <h2 class="ggrad">Empezá gratis, hoy.</h2>
+  <p>Primer mes sin costo y sin tarjeta. ¿Dudas? Escribinos por WhatsApp o Messenger.</p>
+  <a class="btn p" href="https://app.vatuta.ar">Empezá gratis →</a>
+</div></div></section>
+
+<footer><div class="wrap row">
+  <a href="index.html" class="logo"><span class="m">V</span>Vatuta</a>
+  <div>Atendé y vendé por WhatsApp, Instagram, Facebook y tu web.</div>
+  <div><a href="mailto:hola@vatuta.ar">hola@vatuta.ar</a> · vatuta.ar</div>
+</div></footer>
+
+<div class="fab">
+  <a class="ms" href="#contacto" aria-label="Messenger"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.3 2 2 6.1 2 11.6c0 2.9 1.2 5.4 3.1 7.1.2.1.3.4.3.6l.05 1.7c0 .55.57.9 1.07.68l1.9-.84c.2-.08.42-.1.62-.04.9.25 1.86.38 2.86.38 5.7 0 10-4.1 10-9.6S17.7 2 12 2zm6 7.46l-2.93 4.64c-.47.74-1.47.93-2.18.41l-2.33-1.74a.6.6 0 0 0-.72 0l-3.15 2.39c-.42.32-.97-.18-.69-.62l2.94-4.64c.47-.74 1.47-.93 2.18-.41l2.33 1.74a.6.6 0 0 0 .72 0l3.15-2.39c.42-.32.97.18.69.62z"/></svg></a>
+  <a class="wa" href="#contacto" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.68-6.15A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24zM6.6 20.2l.36.22a9.86 9.86 0 0 0 5.03 1.38 9.9 9.9 0 0 0 9.88-9.88 9.9 9.9 0 0 0-9.87-9.9A9.9 9.9 0 0 0 2.13 11.9c0 1.9.54 3.75 1.56 5.34l.24.38-1 3.63 3.67-.96zM17.9 14.3c-.1-.16-.36-.26-.76-.46s-2.36-1.16-2.72-1.3c-.36-.13-.63-.2-.9.2s-1.03 1.3-1.26 1.56c-.23.27-.46.3-.86.1s-1.68-.62-3.2-1.97c-1.18-1.05-1.98-2.35-2.2-2.75-.24-.4-.03-.62.17-.82.18-.18.4-.46.6-.7.2-.22.26-.38.4-.64.13-.26.06-.5-.04-.7-.1-.2-.9-2.16-1.23-2.96-.32-.78-.65-.67-.9-.68l-.76-.02c-.26 0-.7.1-1.05.5-.36.4-1.38 1.35-1.38 3.28s1.4 3.8 1.6 4.07c.2.26 2.76 4.2 6.68 5.9.94.4 1.66.64 2.23.82.94.3 1.8.26 2.47.16.75-.11 2.36-.96 2.7-1.9.32-.92.32-1.7.22-1.87z"/></svg></a>
+</div>
+
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(!reduce&&'IntersectionObserver'in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(!e.isIntersecting)return;var el=e.target;
+      var sibs=Array.prototype.filter.call(el.parentElement.children,function(n){return n.classList.contains('reveal');});
+      var idx=sibs.indexOf(el);if(idx>0)el.style.setProperty('--i',idx);
+      el.classList.add('in');io.unobserve(el);
+    });},{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  }else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
+  // hamburguesa
+  var burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
+  if(burger&&mm){burger.addEventListener('click',function(){var o=mm.classList.toggle('open');burger.classList.toggle('x',o);document.body.style.overflow=o?'hidden':'';});
+    mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');burger.classList.remove('x');document.body.style.overflow='';});});}
+  // toggle mensual/anual
+  var tg=document.getElementById('toggle');
+  if(tg){tg.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    tg.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');
+    var p=b.getAttribute('data-p');
+    document.querySelectorAll('.amt').forEach(function(a){a.textContent=a.getAttribute('data-'+p);});
+  });}
+})();
+</script>
+
+</body>
+</html>

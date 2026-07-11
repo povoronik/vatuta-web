@@ -1,44 +1,50 @@
 # vatuta-web
 
-Landing **coming-soon** de **vatuta.ar** — *"Orquestando tu red · Próximamente"*.
+Sitio de marketing de **Vatuta** — el CRM + bot omnicanal con IA para PyMEs.
+Se sirve como estático en Cloudflare Workers (Static Assets) y **se auto-despliega a
+`vatuta.ar` en cada push a `main`**.
 
-## Qué es
+## Páginas
 
-Un sitio de **una sola página** (`index.html`), HTML/CSS/JS plano y autocontenido
-(sin build, sin framework). Fondo con una red de nodos animada (canvas) acorde al
-concepto "orquestando tu red".
+- `index.html` — **Home** (vendé más por WhatsApp; cómo funciona, producto, diferenciales, contacto).
+- `precios.html` — **Precios** (planes, rampa: mes 1 gratis → −30% → tarifa plena, comisión, FAQ).
+- `rubros.html` — **Rubros** (selector interactivo: el bot de cada vertical).
+
+HTML/CSS/JS plano y autocontenido, sin build ni framework. Identidad latón "sala de control",
+con efecto de aparición al scroll, menú con hamburguesa en móvil y botones flotantes de
+WhatsApp/Messenger. Los CTA ("Empezá gratis" / "Ingresar") apuntan a `app.vatuta.ar`
+(la app, repo `vatuta-app`).
 
 ## Stack / hosting
 
-- **Cloudflare Workers (Static Assets).** No hay código de Worker: el `wrangler.toml`
-  declara `[assets] directory = "./"`, así que Cloudflare sirve los archivos estáticos
-  del repo directamente.
-- **Deploy automático desde Git:** el proyecto Worker `vatuta-web` en Cloudflare está
-  conectado a este repo. **Cada push a `main` re-despliega solo** (build command: none,
-  deploy command: `npx wrangler deploy`).
-- **URL del Worker:** `vatuta-web.povoronik.workers.dev`.
+- **Cloudflare Workers (Static Assets).** No hay código de Worker: `wrangler.toml` declara
+  `[assets] directory = "./"`, así que Cloudflare sirve los archivos del repo directamente.
+- **Deploy automático desde Git:** el Worker `vatuta-web` está conectado a este repo.
+  **Cada push a `main` re-despliega solo** (~1 min). URL del Worker: `vatuta-web.povoronik.workers.dev`.
 
 ## Dominio
 
-- **vatuta.ar** y **www.vatuta.ar** están agregados como **Custom Domains** del Worker
-  en Cloudflare (Worker → pestaña *Domains*). Cloudflare crea los registros DNS y el
-  certificado SSL automáticamente.
-- La zona `vatuta.ar` vive en **Cloudflare** (DNS). Los **nameservers** están delegados
-  en **NIC.ar** a: `frida.ns.cloudflare.com` y `quincy.ns.cloudflare.com`.
-- **Vencimiento del dominio:** 26/06/2027 (renovar en NIC.ar; hay recordatorio en el
-  calendario).
+- **vatuta.ar** y **www.vatuta.ar** son **Custom Domains** del Worker en Cloudflare
+  (crea DNS + SSL automáticamente).
+- La zona `vatuta.ar` vive en **Cloudflare** (DNS); nameservers delegados en **NIC.ar**:
+  `frida.ns.cloudflare.com` y `quincy.ns.cloudflare.com`.
+- **Vencimiento del dominio:** 26/06/2027 (renovar en NIC.ar).
 
-## Cómo actualizar la página
+## Cómo actualizar
 
-1. Editá `index.html` (o los archivos que sumes).
-2. Commit + push a `main`.
-3. Cloudflare re-despliega automáticamente en ~1 minuto. Listo.
+Editá los `.html`, commit + push a `main`, y Cloudflare re-despliega solo en ~1 minuto.
 
-> Cuando la landing "Próximamente" se reemplace por el sitio real, es el mismo flujo:
-> editar/agregar archivos y pushear. Si el sitio real necesita un build (ej. un
-> generador estático), se configura el *Build command* y el *directory* de assets en
-> la config del Worker / `wrangler.toml`.
+## Planificación
+
+La estrategia y el plan completo del proyecto viven en la rama `claude/plan-de-accion`,
+carpeta `plan/` (no se despliega — son documentos internos).
+
+## Pendiente
+
+- Botones flotantes y chat del sitio: conectar a los canales reales de Vatuta (dogfooding, Fase final).
+- Formulario de contacto: conectar el envío al backend cuando exista.
+- Landings por vertical para los ads.
 
 ## Contacto
 
-info@plur.ar
+info@plur.ar · hola@vatuta.ar
