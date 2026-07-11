@@ -16,19 +16,34 @@ en `00-plan-maestro.html` en una pasada, pero quedan asentadas acá para no perd
       Signup, App Review de `whatsapp_business_management`, etc.). Documento aparte con capturas.
 - [ ] **Dominio de la app: `app.vatuta.ar`** (panel), `api.vatuta.ar` (backend). Marketing en `vatuta.ar`.
 
-## Sitio de marketing (repo `vatuta-web`)
+## Sitio de marketing (repo `vatuta-web`) — EN VIVO en vatuta.ar ✅
 
 - **Identidad:** latón "sala de control" (unificada con la app), con efectos modernos.
-- **Home:** lista (versión MIX: latón + red de nodos animada + degradado).
-- [ ] **Página de precios** (próxima).
-- [ ] **Landings por vertical** (una por rubro) + página de rubros.
+- [x] **Home** (`index.html`), **Precios** (`precios.html`) y **Rubros** (`rubros.html`) — publicadas.
+- [ ] **Landings por vertical** (una por rubro) para los ads.
+- [ ] Reapuntar los CTA "Empezá gratis"/"Ingresar" a `app.vatuta.ar` cuando la app exista
+      (hoy ya apuntan ahí; sin tráfico todavía, no molesta).
 
 ### Estándar de TODAS las páginas del sitio
-- [x] **Efecto de aparición al scroll** (en cascada) — patrón reutilizable.
-- [ ] **Botones flotantes de WhatsApp + Messenger** (como plur.ar).
-- [ ] **Formulario de contacto.**
+- [x] **Efecto de aparición al scroll** (en cascada).
+- [x] **Menú superior + hamburguesa en móvil.**
+- [x] **Botones flotantes de WhatsApp + Messenger** (como plur.ar).
+- [x] **Formulario de contacto.**
 - [x] **Logos de canales** (WhatsApp, Instagram, Facebook, web) + sello **"IA de Google Gemini"** (monocromo).
       Ojo marcas: usar assets oficiales y no implicar patrocinio (guías de marca de Meta/Google).
+
+## Google y presencia local (SEO + Maps + medición)
+
+Configurar cuando el sitio salga a promocionarse. Aprovechar que **habrá oficina física en Ciudadela**.
+
+- [ ] **Google Business Profile (Perfil de Empresa)** con la **oficina de Ciudadela** →
+      aparece en **Google Maps** y en la búsqueda local, y habilita **reseñas** (confianza + SEO local).
+- [ ] **Google Search Console** — verificar el dominio, subir `sitemap.xml` + `robots.txt`, indexar el sitio.
+- [ ] **Google Analytics 4 + Google Tag Manager** — medir visitas, origen y conversiones (altas de prueba).
+- [ ] **Google Ads + seguimiento de conversiones** (ya en el Plan de Marketing) — etiqueta de conversión.
+- [ ] **Datos estructurados (schema.org)**: `LocalBusiness` (oficina Ciudadela) + `SoftwareApplication`/`Product` → mejor SEO.
+- [ ] **Mapa de la oficina de Ciudadela embebido** en la página de Contacto.
+- [ ] **SEO on-page**: títulos y meta por página (ya cargados), OpenGraph (ya), `sitemap.xml`, `robots.txt`, velocidad.
 
 ## Fase final — el broche de oro (post construcción + auditoría + tests completos del ecosistema)
 
