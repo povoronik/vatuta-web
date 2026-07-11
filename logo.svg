@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 512" role="img" aria-label="Vatuta">
+  <circle cx="220" cy="256" r="205" fill="none" stroke="#E0A93C" stroke-width="22"/>
+  <ellipse cx="220" cy="256" rx="203" ry="168" fill="#E0A93C"/>
+  <text x="220" y="256" text-anchor="middle" dominant-baseline="central"
+        font-family="Arial, Helvetica, sans-serif" font-weight="700"
+        font-size="118" textLength="330" lengthAdjust="spacingAndGlyphs"
+        fill="#0A0B0E">VATUTA</text>
+</svg>

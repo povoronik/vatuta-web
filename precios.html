@@ -9,7 +9,7 @@
 <meta property="og:title" content="Vatuta — Precios">
 <meta property="og:description" content="Planes simples y en pesos. Primer mes gratis, sin tarjeta, luego 2 meses al 30% menos. Cobrá a tus clientes con Mercado Pago.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230A0B0E'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='20' font-weight='700' fill='%23E0A93C' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='16' rx='14' ry='11.5' fill='%23E0A93C'/%3E%3Ccircle cx='16' cy='16' r='14.5' fill='none' stroke='%23E0A93C' stroke-width='2.6'/%3E%3Ctext x='16' y='21.5' font-family='Arial,Helvetica,sans-serif' font-size='15' font-weight='700' fill='%230A0B0E' text-anchor='middle'%3EV%3C/text%3E%3C/svg%3E">
 <style>
   :root{
     --bg:#0A0B0E;--bg-2:#101216;--panel:#15171C;--panel-2:#1B1E24;
@@ -40,7 +40,7 @@
   nav.top{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 76%,transparent);border-bottom:1px solid var(--line);}
   nav .row{display:flex;align-items:center;gap:26px;height:64px;}
   .logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:-.02em;}
-  .logo .m{width:30px;height:30px;border-radius:8px;background:linear-gradient(150deg,var(--brass),var(--brass-deep));color:#12100b;display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:18px;}
+  .logomark{height:36px;width:auto;display:block;}
   nav .links{display:flex;gap:22px;margin-left:14px;}
   nav .links a{font-size:14px;color:var(--muted);font-weight:500;}nav .links a:hover,nav .links a.on{color:var(--ink);}
   nav .act{margin-left:auto;display:flex;align-items:center;gap:16px;}
@@ -142,7 +142,7 @@
 
 
 <nav class="top"><div class="wrap row">
-  <a href="index.html" class="logo"><span class="m">V</span>Vatuta</a>
+  <a href="index.html" class="logo"><img class="logomark" src="logo.svg" alt="Vatuta"></a>
   <div class="links"><a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html" class="on">Precios</a><a href="rubros.html">Rubros</a><a href="contacto.html">Contacto</a></div>
   <div class="act"><a class="in" href="https://app.vatuta.ar">Ingresar</a><a class="btn p" href="https://app.vatuta.ar">Empezá gratis</a></div>
   <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
@@ -257,7 +257,7 @@
 </div></div></section>
 
 <footer><div class="wrap row">
-  <a href="index.html" class="logo"><span class="m">V</span>Vatuta</a>
+  <a href="index.html" class="logo"><img class="logomark" src="logo.svg" alt="Vatuta"></a>
   <div>Atendé y vendé por WhatsApp, Instagram, Facebook y tu web.</div>
   <div><a href="mailto:hola@vatuta.ar">hola@vatuta.ar</a> · vatuta.ar</div>
 </div></footer>
