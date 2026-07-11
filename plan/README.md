@@ -34,6 +34,14 @@ Son páginas HTML autocontenidas (sin build). Abrilas en el navegador (doble cli
 
 ## Próximo paso (construcción)
 
+El **prompt listo para la próxima sesión** está en
+[`PROMPT-PROXIMA-SESION.md`](PROMPT-PROXIMA-SESION.md) (copiá y pegá).
+
+- **El backend/producto va en un repo nuevo: `povoronik/vatuta-app`** (privado). Este repo
+  (`vatuta-web`) queda como el sitio/landing de vatuta.ar.
+- ⚠️ Crear `vatuta-app` a mano antes de arrancar (github.com/new → `vatuta-app` → Private
+  → Add a README). Ver detalle en el PROMPT.
+
 Fase 1 — núcleo multi-tenant sobre el código de PLUR. Orden de arranque en el plan maestro,
 sección "Por dónde empiezo":
 
