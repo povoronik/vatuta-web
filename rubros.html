@@ -85,8 +85,10 @@
   .allgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
   @media(max-width:900px){.allgrid{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:520px){.allgrid{grid-template-columns:1fr;}}
-  .rg{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;text-align:center;transition:transform .2s,border-color .2s;}
+  .rg{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:18px;text-align:center;transition:transform .2s,border-color .2s;cursor:pointer;}
   .rg:hover{transform:translateY(-4px);border-color:var(--brass);}
+  .rg .ver{display:block;margin-top:8px;font-family:var(--mono);font-size:10px;color:var(--brass-ink);opacity:0;transition:opacity .2s;}
+  .rg:hover .ver{opacity:1;}
   .rg .e{font-size:26px;}.rg b{display:block;font-family:var(--serif);font-size:1.05rem;margin:8px 0 6px;}
   .rg span{font-family:var(--mono);font-size:10px;color:var(--faint);letter-spacing:.03em;}
 
@@ -108,12 +110,12 @@
 
 <nav class="top"><div class="wrap row">
   <a href="index.html" class="logo"><span class="m">V</span>Vatuta</a>
-  <div class="links"><a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html">Precios</a><a href="rubros.html" class="on">Rubros</a><a href="#contacto">Contacto</a></div>
+  <div class="links"><a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html">Precios</a><a href="rubros.html" class="on">Rubros</a><a href="contacto.html">Contacto</a></div>
   <div class="act"><a class="in" href="https://app.vatuta.ar">Ingresar</a><a class="btn p" href="https://app.vatuta.ar">Empezá gratis</a></div>
   <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
 </div></nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html">Precios</a><a href="rubros.html">Rubros</a><a href="#contacto">Contacto</a>
+  <a href="index.html#como">Cómo funciona</a><a href="index.html#difs">Producto</a><a href="precios.html">Precios</a><a href="rubros.html">Rubros</a><a href="contacto.html">Contacto</a>
   <a class="in" href="https://app.vatuta.ar">Ingresar</a><a class="btn p" href="https://app.vatuta.ar">Empezá gratis →</a>
 </div>
 
@@ -146,12 +148,12 @@
 
 <section style="padding-top:0"><div class="wrap">
   <div class="sh reveal"><span class="eyebrow">Y muchos más</span><h2>Sea cual sea tu negocio.</h2><p>El bot se adapta a cualquier rubro. Si el tuyo no está en la lista, igual lo configurás en minutos.</p></div>
-  <div class="allgrid">
-    <div class="rg reveal"><div class="e">🔨</div><b>Hogar y oficios</b><span>PRESUPUESTO</span></div>
-    <div class="rg reveal"><div class="e">🍽️</div><b>Gastronomía</b><span>PEDIDO</span></div>
-    <div class="rg reveal"><div class="e">💇</div><b>Estética / turnos</b><span>RESERVA</span></div>
-    <div class="rg reveal"><div class="e">🛍️</div><b>Comercio</b><span>CHECKOUT</span></div>
-    <div class="rg reveal"><div class="e">🏢</div><b>Inmobiliarias</b><span>VISITA</span></div>
+  <div class="allgrid" id="allgrid">
+    <div class="rg reveal" data-k="hogar"><div class="e">🔨</div><b>Hogar y oficios</b><span>PRESUPUESTO</span><span class="ver">ver el bot ↑</span></div>
+    <div class="rg reveal" data-k="gastro"><div class="e">🍽️</div><b>Gastronomía</b><span>PEDIDO</span><span class="ver">ver el bot ↑</span></div>
+    <div class="rg reveal" data-k="estetica"><div class="e">💇</div><b>Estética / turnos</b><span>RESERVA</span><span class="ver">ver el bot ↑</span></div>
+    <div class="rg reveal" data-k="comercio"><div class="e">🛍️</div><b>Comercio</b><span>CHECKOUT</span><span class="ver">ver el bot ↑</span></div>
+    <div class="rg reveal" data-k="inmo"><div class="e">🏢</div><b>Inmobiliarias</b><span>VISITA</span><span class="ver">ver el bot ↑</span></div>
   </div>
 </div></section>
 
@@ -168,8 +170,8 @@
 </div></footer>
 
 <div class="fab">
-  <a class="ms" href="#contacto" aria-label="Messenger"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.3 2 2 6.1 2 11.6c0 2.9 1.2 5.4 3.1 7.1.2.1.3.4.3.6l.05 1.7c0 .55.57.9 1.07.68l1.9-.84c.2-.08.42-.1.62-.04.9.25 1.86.38 2.86.38 5.7 0 10-4.1 10-9.6S17.7 2 12 2zm6 7.46l-2.93 4.64c-.47.74-1.47.93-2.18.41l-2.33-1.74a.6.6 0 0 0-.72 0l-3.15 2.39c-.42.32-.97-.18-.69-.62l2.94-4.64c.47-.74 1.47-.93 2.18-.41l2.33 1.74a.6.6 0 0 0 .72 0l3.15-2.39c.42-.32.97.18.69.62z"/></svg></a>
-  <a class="wa" href="#contacto" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.68-6.15A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24zM6.6 20.2l.36.22a9.86 9.86 0 0 0 5.03 1.38 9.9 9.9 0 0 0 9.88-9.88 9.9 9.9 0 0 0-9.87-9.9A9.9 9.9 0 0 0 2.13 11.9c0 1.9.54 3.75 1.56 5.34l.24.38-1 3.63 3.67-.96zM17.9 14.3c-.1-.16-.36-.26-.76-.46s-2.36-1.16-2.72-1.3c-.36-.13-.63-.2-.9.2s-1.03 1.3-1.26 1.56c-.23.27-.46.3-.86.1s-1.68-.62-3.2-1.97c-1.18-1.05-1.98-2.35-2.2-2.75-.24-.4-.03-.62.17-.82.18-.18.4-.46.6-.7.2-.22.26-.38.4-.64.13-.26.06-.5-.04-.7-.1-.2-.9-2.16-1.23-2.96-.32-.78-.65-.67-.9-.68l-.76-.02c-.26 0-.7.1-1.05.5-.36.4-1.38 1.35-1.38 3.28s1.4 3.8 1.6 4.07c.2.26 2.76 4.2 6.68 5.9.94.4 1.66.64 2.23.82.94.3 1.8.26 2.47.16.75-.11 2.36-.96 2.7-1.9.32-.92.32-1.7.22-1.87z"/></svg></a>
+  <a class="ms" href="contacto.html" aria-label="Messenger"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.3 2 2 6.1 2 11.6c0 2.9 1.2 5.4 3.1 7.1.2.1.3.4.3.6l.05 1.7c0 .55.57.9 1.07.68l1.9-.84c.2-.08.42-.1.62-.04.9.25 1.86.38 2.86.38 5.7 0 10-4.1 10-9.6S17.7 2 12 2zm6 7.46l-2.93 4.64c-.47.74-1.47.93-2.18.41l-2.33-1.74a.6.6 0 0 0-.72 0l-3.15 2.39c-.42.32-.97-.18-.69-.62l2.94-4.64c.47-.74 1.47-.93 2.18-.41l2.33 1.74a.6.6 0 0 0 .72 0l3.15-2.39c.42-.32.97.18.69.62z"/></svg></a>
+  <a class="wa" href="contacto.html" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M.06 24l1.68-6.15A11.87 11.87 0 0 1 .16 11.9C.16 5.34 5.5 0 12.06 0a11.82 11.82 0 0 1 8.41 3.49 11.82 11.82 0 0 1 3.48 8.41c0 6.56-5.34 11.9-11.9 11.9a11.9 11.9 0 0 1-5.68-1.45L.06 24zM6.6 20.2l.36.22a9.86 9.86 0 0 0 5.03 1.38 9.9 9.9 0 0 0 9.88-9.88 9.9 9.9 0 0 0-9.87-9.9A9.9 9.9 0 0 0 2.13 11.9c0 1.9.54 3.75 1.56 5.34l.24.38-1 3.63 3.67-.96zM17.9 14.3c-.1-.16-.36-.26-.76-.46s-2.36-1.16-2.72-1.3c-.36-.13-.63-.2-.9.2s-1.03 1.3-1.26 1.56c-.23.27-.46.3-.86.1s-1.68-.62-3.2-1.97c-1.18-1.05-1.98-2.35-2.2-2.75-.24-.4-.03-.62.17-.82.18-.18.4-.46.6-.7.2-.22.26-.38.4-.64.13-.26.06-.5-.04-.7-.1-.2-.9-2.16-1.23-2.96-.32-.78-.65-.67-.9-.68l-.76-.02c-.26 0-.7.1-1.05.5-.36.4-1.38 1.35-1.38 3.28s1.4 3.8 1.6 4.07c.2.26 2.76 4.2 6.68 5.9.94.4 1.66.64 2.23.82.94.3 1.8.26 2.47.16.75-.11 2.36-.96 2.7-1.9.32-.92.32-1.7.22-1.87z"/></svg></a>
 </div>
 
 <script>
@@ -200,6 +202,10 @@
   document.getElementById('pills').addEventListener('click',function(e){var b=e.target.closest('.pill');if(!b)return;
     this.querySelectorAll('.pill').forEach(function(x){x.classList.remove('on');});b.classList.add('on');render(b.getAttribute('data-k'));});
   render('hogar');
+  var ag=document.getElementById('allgrid');
+  if(ag)ag.addEventListener('click',function(e){var c=e.target.closest('.rg');if(!c)return;var k=c.getAttribute('data-k');
+    document.getElementById('pills').querySelectorAll('.pill').forEach(function(x){x.classList.toggle('on',x.getAttribute('data-k')===k);});
+    render(k);var sc=document.querySelector('.showcase');if(sc)sc.scrollIntoView({behavior:reduce?'auto':'smooth',block:'center'});});
   // reveal + burger
   if(!reduce&&'IntersectionObserver'in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting)return;var el=e.target;var sibs=Array.prototype.filter.call(el.parentElement.children,function(n){return n.classList.contains('reveal');});var idx=sibs.indexOf(el);if(idx>0)el.style.setProperty('--i',idx);el.classList.add('in');io.unobserve(el);});},{threshold:.12,rootMargin:'0px 0px -8% 0px'});document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});}else{document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('in');});}
   var burger=document.getElementById('burger'),mm=document.getElementById('mobileMenu');
